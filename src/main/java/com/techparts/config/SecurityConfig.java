@@ -18,6 +18,9 @@ public class SecurityConfig {
 
     @Autowired
     private CustomUserDetailsService userDetailsService;
+    
+    @Autowired
+    private CustomAuthenticationSuccessHandler authenticationSuccessHandler;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -33,7 +36,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(authz -> authz
-                .requestMatchers("/", "/login", "/register", "/css/**", "/js/**", "/images/**", "/products/**").permitAll()
+                .requestMatchers("/", "/login", "/register", "/create-admin", "/css/**", "/js/**", "/images/**", "/products/**").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/supplier/**").hasRole("SUPPLIER")
                 .requestMatchers("/user/**", "/profile/**", "/cart/**", "/orders/**").hasRole("CUSTOMER")
@@ -42,7 +45,7 @@ public class SecurityConfig {
             .formLogin(form -> form
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/products", true)
+                .successHandler(authenticationSuccessHandler)
                 .failureUrl("/login?error=true")
                 .permitAll()
             )

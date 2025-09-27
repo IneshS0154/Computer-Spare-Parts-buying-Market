@@ -11,7 +11,9 @@ com\techparts\entity\ComplaintType.class
 com\techparts\repository\OrderRepository.class
 com\techparts\controller\AdminController.class
 com\techparts\repository\ComplaintRepository.class
+com\techparts\config\CustomAuthenticationSuccessHandler.class
 com\techparts\service\UserService.class
+com\techparts\entity\Admin.class
 com\techparts\service\SupplierService.class
 com\techparts\config\SecurityConfig.class
 com\techparts\service\AdminService.class
@@ -24,9 +26,11 @@ com\techparts\controller\WebController.class
 com\techparts\controller\AuthController.class
 com\techparts\controller\SupplierController.class
 com\techparts\entity\OrderStatus.class
+com\techparts\service\AdminUserService.class
 com\techparts\repository\RepairTrackingRepository.class
 com\techparts\repository\OrderItemRepository.class
 com\techparts\entity\Inventory.class
+com\techparts\config\CustomAuthenticationSuccessHandler$1.class
 com\techparts\repository\CartRepository.class
 com\techparts\entity\RepairLog.class
 com\techparts\entity\PaymentStatus.class
@@ -39,6 +43,7 @@ com\techparts\entity\UserRole.class
 com\techparts\repository\InventoryRepository.class
 com\techparts\repository\SupplierRequestRepository.class
 com\techparts\entity\PaymentMethod.class
+com\techparts\repository\AdminRepository.class
 com\techparts\TechPartsSolutionsApplication.class
 com\techparts\entity\User.class
 com\techparts\entity\RepairLogType.class

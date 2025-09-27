@@ -1,10 +1,12 @@
 C:\Users\Inesh\Documents\Tech Parts solutions\src\main\java\com\techparts\entity\RepairTracking.java
+C:\Users\Inesh\Documents\Tech Parts solutions\src\main\java\com\techparts\entity\Admin.java
 C:\Users\Inesh\Documents\Tech Parts solutions\src\main\java\com\techparts\service\SupplierService.java
 C:\Users\Inesh\Documents\Tech Parts solutions\src\main\java\com\techparts\repository\OrderRepository.java
 C:\Users\Inesh\Documents\Tech Parts solutions\src\main\java\com\techparts\entity\OrderItem.java
 C:\Users\Inesh\Documents\Tech Parts solutions\src\main\java\com\techparts\entity\RepairStatus.java
 C:\Users\Inesh\Documents\Tech Parts solutions\src\main\java\com\techparts\entity\ComplaintStatus.java
 C:\Users\Inesh\Documents\Tech Parts solutions\src\main\java\com\techparts\repository\RepairTrackingRepository.java
+C:\Users\Inesh\Documents\Tech Parts solutions\src\main\java\com\techparts\config\CustomAuthenticationSuccessHandler.java
 C:\Users\Inesh\Documents\Tech Parts solutions\src\main\java\com\techparts\controller\WebController.java
 C:\Users\Inesh\Documents\Tech Parts solutions\src\main\java\com\techparts\service\InventoryService.java
 C:\Users\Inesh\Documents\Tech Parts solutions\src\main\java\com\techparts\entity\OrderStatus.java
@@ -14,6 +16,7 @@ C:\Users\Inesh\Documents\Tech Parts solutions\src\main\java\com\techparts\contro
 C:\Users\Inesh\Documents\Tech Parts solutions\src\main\java\com\techparts\entity\Complaint.java
 C:\Users\Inesh\Documents\Tech Parts solutions\src\main\java\com\techparts\entity\Order.java
 C:\Users\Inesh\Documents\Tech Parts solutions\src\main\java\com\techparts\service\AdminService.java
+C:\Users\Inesh\Documents\Tech Parts solutions\src\main\java\com\techparts\service\AdminUserService.java
 C:\Users\Inesh\Documents\Tech Parts solutions\src\main\java\com\techparts\repository\UserBoughtPartWarrantyRepository.java
 C:\Users\Inesh\Documents\Tech Parts solutions\src\main\java\com\techparts\service\WarrantyService.java
 C:\Users\Inesh\Documents\Tech Parts solutions\src\main\java\com\techparts\TechPartsSolutionsApplication.java
@@ -38,6 +41,7 @@ C:\Users\Inesh\Documents\Tech Parts solutions\src\main\java\com\techparts\servic
 C:\Users\Inesh\Documents\Tech Parts solutions\src\main\java\com\techparts\entity\Cart.java
 C:\Users\Inesh\Documents\Tech Parts solutions\src\main\java\com\techparts\entity\Inventory.java
 C:\Users\Inesh\Documents\Tech Parts solutions\src\main\java\com\techparts\entity\User.java
+C:\Users\Inesh\Documents\Tech Parts solutions\src\main\java\com\techparts\repository\AdminRepository.java
 C:\Users\Inesh\Documents\Tech Parts solutions\src\main\java\com\techparts\controller\ProductController.java
 C:\Users\Inesh\Documents\Tech Parts solutions\src\main\java\com\techparts\repository\CartRepository.java
 C:\Users\Inesh\Documents\Tech Parts solutions\src\main\java\com\techparts\entity\SupplierRequest.java

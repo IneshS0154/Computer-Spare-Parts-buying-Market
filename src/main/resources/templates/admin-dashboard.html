@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -8,6 +8,7 @@
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <link href="/css/animations.css" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script>
         tailwind.config = {
@@ -50,7 +51,7 @@
         }
     </style>
 </head>
-<body class="font-display bg-background-light dark:bg-background-dark text-foreground-light dark:text-foreground-dark">
+<body class="font-display bg-background-light dark:bg-background-dark text-foreground-light dark:text-foreground-dark fade-in">
     <div class="flex h-screen">
         <aside class="w-64 flex flex-col border-r border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark">
             <div class="flex items-center gap-3 px-6 py-5 border-b border-border-light dark:border-border-dark">
@@ -64,19 +65,19 @@
                     <span class="material-symbols-outlined">dashboard</span>
                     Dashboard
                 </a>
-                <a class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors" href="#">
+                <a class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors" href="/admin/users">
                     <span class="material-symbols-outlined">group</span>
                     Users
                 </a>
-                <a class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors" href="#">
+                <a class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors" href="/admin/orders">
                     <span class="material-symbols-outlined">shopping_cart</span>
                     Orders
                 </a>
-                <a class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors" href="#">
+                <a class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors" href="/admin/inventory">
                     <span class="material-symbols-outlined">inventory_2</span>
                     Inventory
                 </a>
-                <a class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors" href="#">
+                <a class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors" href="/admin/suppliers">
                     <span class="material-symbols-outlined">local_shipping</span>
                     Suppliers
                 </a>
@@ -108,76 +109,76 @@
                     </button>
                 </div>
             </header>
-            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-                <div class="bg-card-light dark:bg-card-dark p-6 rounded-xl border border-border-light dark:border-border-dark flex flex-col gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 animate-stagger">
+                <div class="bg-card-light dark:bg-card-dark p-6 rounded-xl border border-border-light dark:border-border-dark flex flex-col gap-4 card-animate">
                     <div class="flex items-center gap-4">
                         <div class="bg-primary/10 text-primary p-3 rounded-lg">
                             <span class="material-symbols-outlined text-2xl">group</span>
                         </div>
                         <p class="text-lg font-semibold">Total Users</p>
                     </div>
-                    <p class="text-4xl font-bold">1,234</p>
+                    <p class="text-4xl font-bold" th:text="${totalUsers}">1,234</p>
                     <p class="text-sm text-subtle-light dark:text-subtle-dark">+15% from last month</p>
                 </div>
-                <div class="bg-card-light dark:bg-card-dark p-6 rounded-xl border border-border-light dark:border-border-dark flex flex-col gap-4">
+                <div class="bg-card-light dark:bg-card-dark p-6 rounded-xl border border-border-light dark:border-border-dark flex flex-col gap-4 card-animate">
                     <div class="flex items-center gap-4">
                         <div class="bg-primary/10 text-primary p-3 rounded-lg">
                             <span class="material-symbols-outlined text-2xl">shopping_cart</span>
                         </div>
                         <p class="text-lg font-semibold">Total Orders</p>
                     </div>
-                    <p class="text-4xl font-bold">567</p>
+                    <p class="text-4xl font-bold" th:text="${totalOrders}">567</p>
                     <p class="text-sm text-subtle-light dark:text-subtle-dark">+8% from last month</p>
                 </div>
-                <div class="bg-card-light dark:bg-card-dark p-6 rounded-xl border border-border-light dark:border-border-dark flex flex-col gap-4">
+                <div class="bg-card-light dark:bg-card-dark p-6 rounded-xl border border-border-light dark:border-border-dark flex flex-col gap-4 card-animate">
                     <div class="flex items-center gap-4">
                         <div class="bg-primary/10 text-primary p-3 rounded-lg">
                             <span class="material-symbols-outlined text-2xl">inventory</span>
                         </div>
                         <p class="text-lg font-semibold">Items in Inventory</p>
                     </div>
-                    <p class="text-4xl font-bold">890</p>
+                    <p class="text-4xl font-bold" th:text="${totalInventory}">890</p>
                     <p class="text-sm text-subtle-light dark:text-subtle-dark">25 new items added</p>
                 </div>
-                <div class="bg-card-light dark:bg-card-dark p-6 rounded-xl border border-border-light dark:border-border-dark flex flex-col gap-4">
+                <div class="bg-card-light dark:bg-card-dark p-6 rounded-xl border border-border-light dark:border-border-dark flex flex-col gap-4 card-animate">
                     <div class="flex items-center gap-4">
                         <div class="bg-primary/10 text-primary p-3 rounded-lg">
-                            <span class="material-symbols-outlined text-2xl">local_shipping</span>
+                            <span class="material-symbols-outlined text-2xl">report_problem</span>
                         </div>
-                        <p class="text-lg font-semibold">Suppliers</p>
+                        <p class="text-lg font-semibold">Pending Complaints</p>
                     </div>
-                    <p class="text-4xl font-bold">42</p>
-                    <p class="text-sm text-subtle-light dark:text-subtle-dark">+5 new suppliers</p>
+                    <p class="text-4xl font-bold" th:text="${pendingComplaints}">12</p>
+                    <p class="text-sm text-subtle-light dark:text-subtle-dark">3 new complaints today</p>
                 </div>
             </div>
             <div class="mt-12">
                 <h3 class="text-2xl font-bold mb-6">Quick Actions</h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-                    <a class="flex flex-col items-center justify-center p-6 bg-card-light dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark hover:shadow-lg hover:border-primary transition-all group" href="#">
+                    <a class="flex flex-col items-center justify-center p-6 bg-card-light dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark hover:shadow-lg hover:border-primary transition-all group" href="/admin/users">
                         <div class="bg-primary/10 text-primary p-4 rounded-full mb-4">
                             <span class="material-symbols-outlined text-3xl">manage_accounts</span>
                         </div>
                         <p class="font-semibold text-center">Manage Users</p>
                     </a>
-                    <a class="flex flex-col items-center justify-center p-6 bg-card-light dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark hover:shadow-lg hover:border-primary transition-all group" href="#">
+                    <a class="flex flex-col items-center justify-center p-6 bg-card-light dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark hover:shadow-lg hover:border-primary transition-all group" href="/admin/orders">
                         <div class="bg-primary/10 text-primary p-4 rounded-full mb-4">
                             <span class="material-symbols-outlined text-3xl">list_alt</span>
                         </div>
                         <p class="font-semibold text-center">Manage Orders</p>
                     </a>
-                    <a class="flex flex-col items-center justify-center p-6 bg-card-light dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark hover:shadow-lg hover:border-primary transition-all group" href="#">
+                    <a class="flex flex-col items-center justify-center p-6 bg-card-light dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark hover:shadow-lg hover:border-primary transition-all group" href="/admin/inventory">
                         <div class="bg-primary/10 text-primary p-4 rounded-full mb-4">
                             <span class="material-symbols-outlined text-3xl">inventory_2</span>
                         </div>
                         <p class="font-semibold text-center">Manage Inventory</p>
                     </a>
-                    <a class="flex flex-col items-center justify-center p-6 bg-card-light dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark hover:shadow-lg hover:border-primary transition-all group" href="#">
+                    <a class="flex flex-col items-center justify-center p-6 bg-card-light dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark hover:shadow-lg hover:border-primary transition-all group" href="/admin/suppliers">
                         <div class="bg-primary/10 text-primary p-4 rounded-full mb-4">
                             <span class="material-symbols-outlined text-3xl">local_shipping</span>
                         </div>
                         <p class="font-semibold text-center">Supplier Management</p>
                     </a>
-                    <a class="flex flex-col items-center justify-center p-6 bg-card-light dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark hover:shadow-lg hover:border-primary transition-all group" href="#">
+                    <a class="flex flex-col items-center justify-center p-6 bg-card-light dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark hover:shadow-lg hover:border-primary transition-all group" href="/admin/supplier-orders">
                         <div class="bg-primary/10 text-primary p-4 rounded-full mb-4">
                             <span class="material-symbols-outlined text-3xl">receipt_long</span>
                         </div>
@@ -187,5 +188,6 @@
             </div>
         </main>
     </div>
+    <script src="/js/page-transitions.js"></script>
 </body>
 </html>

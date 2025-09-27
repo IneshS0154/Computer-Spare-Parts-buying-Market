@@ -1,8 +1,11 @@
 package com.techparts.controller;
 
 import com.techparts.entity.User;
+import com.techparts.entity.Admin;
 import com.techparts.entity.UserRole;
 import com.techparts.service.UserService;
+import com.techparts.service.AdminUserService;
+import com.techparts.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,12 +14,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class AuthController {
 
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    private AdminUserService adminUserService;
+    
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("/login")
     public String login() {
@@ -99,5 +109,47 @@ public class AuthController {
             model.addAttribute("isAuthenticated", false);
         }
         return "fragments/auth-status :: authStatus";
+    }
+
+    @GetMapping("/test")
+    @ResponseBody
+    public String test() {
+        return "Test endpoint working!";
+    }
+    
+    @GetMapping("/create-admin")
+    @ResponseBody
+    public String createAdmin() {
+        try {
+            System.out.println("=== CREATE ADMIN ENDPOINT CALLED ===");
+            
+            // Check if admin already exists
+            if (adminUserService.existsByUsername("admin")) {
+                System.out.println("Admin user already exists!");
+                return "Admin already exists";
+            }
+            
+            System.out.println("Creating new admin user...");
+            
+            // Create admin user in separate admin table
+            Admin admin = new Admin();
+            admin.setUsername("admin");
+            admin.setEmail("admin@techparts.com");
+            admin.setPassword("admin123"); // Will be encoded by service
+            admin.setFirstName("Admin");
+            admin.setLastName("User");
+            admin.setPhone("+1234567890");
+            admin.setAddress("Admin Office");
+            
+            System.out.println("About to call adminUserService.createAdmin()...");
+            adminUserService.createAdmin(admin);
+            System.out.println("Admin user created successfully in admin table!");
+            return "Admin created successfully";
+            
+        } catch (Exception e) {
+            System.out.println("Failed to create admin: " + e.getMessage());
+            e.printStackTrace();
+            return "Failed to create admin: " + e.getMessage();
+        }
     }
 }
