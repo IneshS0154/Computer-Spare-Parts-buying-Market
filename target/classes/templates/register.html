@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Tech Parts - Sign Up</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="/css/animations.css" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .form-input {
+            border: 1px solid;
+        }
+        #supplier-fields {
+            display: none;
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200 fade-in">
+    <div class="flex flex-col min-h-screen">
+        <header class="bg-white/80 dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-10 border-b border-slate-200 dark:border-slate-800">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <div class="flex items-center gap-4">
+                        <a class="flex items-center gap-2 text-slate-900 dark:text-white" href="/">
+                            <svg class="h-8 w-8 text-primary" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3z"></path>
+                            </svg>
+                            <span class="text-xl font-bold">TechParts</span>
+                        </a>
+                    </div>
+                    <nav class="hidden md:flex items-center gap-6">
+                        <!-- <a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="/">Home</a>
+                        <a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="/products">Products</a>
+                        <a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Support</a>
+                        <a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Contact</a> -->
+                    </nav>
+                    <div class="flex items-center">
+                        <button class="md:hidden p-2 rounded-md text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+            <div class="w-full max-w-md space-y-8">
+                <div>
+                    <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+                        Create an account
+                    </h2>
+                </div>
+                <div class="bg-white dark:bg-background-dark p-8 shadow-sm rounded-lg border border-slate-200 dark:border-slate-800">
+                    <form action="/register" class="space-y-6" method="POST">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 dark:text-slate-300">
+                                I am a
+                            </label>
+                            <div class="mt-1 flex gap-4">
+                                <div class="flex items-center">
+                                    <input checked="" class="h-4 w-4 text-primary focus:ring-primary border-slate-300 dark:border-slate-700" id="customer" name="userType" type="radio" value="customer"/>
+                                    <label class="ml-2 block text-sm text-slate-900 dark:text-slate-300" for="customer">Customer</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input class="h-4 w-4 text-primary focus:ring-primary border-slate-300 dark:border-slate-700" id="supplier" name="userType" type="radio" value="supplier"/>
+                                    <label class="ml-2 block text-sm text-slate-900 dark:text-slate-300" for="supplier">Supplier</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="firstName">
+                                    First Name
+                                </label>
+                                <div class="mt-1">
+                                    <input autocomplete="given-name" class="form-input w-full px-3 py-2 bg-background-light dark:bg-slate-800 border-slate-300 dark:border-slate-700 rounded-md shadow-sm placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm" id="firstName" name="firstName" required="" type="text"/>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="lastName">
+                                    Last Name
+                                </label>
+                                <div class="mt-1">
+                                    <input autocomplete="family-name" class="form-input w-full px-3 py-2 bg-background-light dark:bg-slate-800 border-slate-300 dark:border-slate-700 rounded-md shadow-sm placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm" id="lastName" name="lastName" required="" type="text"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="username">
+                                Username
+                            </label>
+                            <div class="mt-1">
+                                <input autocomplete="username" class="form-input w-full px-3 py-2 bg-background-light dark:bg-slate-800 border-slate-300 dark:border-slate-700 rounded-md shadow-sm placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm" id="username" name="username" required="" type="text"/>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="email">
+                                Email address
+                            </label>
+                            <div class="mt-1">
+                                <input autocomplete="email" class="form-input w-full px-3 py-2 bg-background-light dark:bg-slate-800 border-slate-300 dark:border-slate-700 rounded-md shadow-sm placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm" id="email" name="email" required="" type="email"/>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="password">
+                                Password
+                            </label>
+                            <div class="mt-1">
+                                <input autocomplete="new-password" class="form-input w-full px-3 py-2 bg-background-light dark:bg-slate-800 border-slate-300 dark:border-slate-700 rounded-md shadow-sm placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm" id="password" name="password" required="" type="password"/>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="phone">
+                                Phone Number
+                            </label>
+                            <div class="mt-1">
+                                <input autocomplete="tel" class="form-input w-full px-3 py-2 bg-background-light dark:bg-slate-800 border-slate-300 dark:border-slate-700 rounded-md shadow-sm placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm" id="phone" name="phone" required="" type="tel"/>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="address">
+                                Address
+                            </label>
+                            <div class="mt-1">
+                                <input autocomplete="street-address" class="form-input w-full px-3 py-2 bg-background-light dark:bg-slate-800 border-slate-300 dark:border-slate-700 rounded-md shadow-sm placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm" id="address" name="address" required="" type="text"/>
+                            </div>
+                        </div>
+                        <div class="space-y-6" id="supplier-fields">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="company-name">
+                                    Company Name
+                                </label>
+                                <div class="mt-1">
+                                    <input class="form-input w-full px-3 py-2 bg-background-light dark:bg-slate-800 border-slate-300 dark:border-slate-700 rounded-md shadow-sm placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm" id="company-name" name="company-name" type="text"/>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="company-reg-number">
+                                    Company Registration Number
+                                </label>
+                                <div class="mt-1">
+                                    <input class="form-input w-full px-3 py-2 bg-background-light dark:bg-slate-800 border-slate-300 dark:border-slate-700 rounded-md shadow-sm placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm" id="company-reg-number" name="company-reg-number" type="text"/>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="owner-contact-name">
+                                    Identification Owner Contact Name
+                                </label>
+                                <div class="mt-1">
+                                    <input class="form-input w-full px-3 py-2 bg-background-light dark:bg-slate-800 border-slate-300 dark:border-slate-700 rounded-md shadow-sm placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm" id="owner-contact-name" name="owner-contact-name" type="text"/>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="nic">
+                                    NIC (National Identity Card)
+                                </label>
+                                <div class="mt-1">
+                                    <input class="form-input w-full px-3 py-2 bg-background-light dark:bg-slate-800 border-slate-300 dark:border-slate-700 rounded-md shadow-sm placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm" id="nic" name="nic" type="text"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark" type="submit">
+                                Sign up
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <p class="mt-2 text-center text-sm text-slate-600 dark:text-slate-400">
+                    Already have an account?
+                    <a class="font-medium text-primary hover:text-primary/80" href="/login">
+                        Sign in
+                    </a>
+                </p>
+            </div>
+        </main>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const supplierRadio = document.getElementById('supplier');
+            const customerRadio = document.getElementById('customer');
+            const supplierFields = document.getElementById('supplier-fields');
+            
+            if (supplierFields) {
+                const supplierInputs = supplierFields.querySelectorAll('input');
+                
+                function toggleSupplierFields() {
+                    console.log('Toggle function called');
+                    console.log('Supplier radio checked:', supplierRadio ? supplierRadio.checked : 'not found');
+                    
+                    if (supplierRadio && supplierRadio.checked) {
+                        console.log('Showing supplier fields');
+                        supplierFields.style.display = 'block';
+                        supplierInputs.forEach(input => {
+                            input.required = true;
+                        });
+                    } else {
+                        console.log('Hiding supplier fields');
+                        supplierFields.style.display = 'none';
+                        supplierInputs.forEach(input => {
+                            input.required = false;
+                            input.value = '';
+                        });
+                    }
+                }
+                
+                // Add event listeners to both radio buttons
+                if (supplierRadio) {
+                    supplierRadio.addEventListener('change', toggleSupplierFields);
+                }
+                if (customerRadio) {
+                    customerRadio.addEventListener('change', toggleSupplierFields);
+                }
+                
+                // Initial check
+                toggleSupplierFields();
+            }
+        });
+    </script>
+    <script src="/js/page-transitions.js"></script>
+</body>
+</html>

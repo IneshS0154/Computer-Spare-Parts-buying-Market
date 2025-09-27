@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Tech Parts</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+    <link href="/css/animations.css" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        display: ["Inter"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200 fade-in">
+    <div class="flex h-auto min-h-screen w-full flex-col">
+        <div class="layout-container flex h-full grow flex-col">
+            <header class="border-b border-gray-200 dark:border-gray-800 px-10 py-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-8">
+                        <div class="flex items-center gap-2 text-gray-900 dark:text-white">
+                            <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13.8261 17.4264C16.7203 18.1174 20.2244 18.5217 24 18.5217C27.7756 18.5217 31.2797 18.1174 34.1739 17.4264C36.9144 16.7722 39.9967 15.2331 41.3563 14.1648L24.8486 40.6391C24.4571 41.267 23.5429 41.267 23.1514 40.6391L6.64374 14.1648C8.00331 15.2331 11.0856 16.7722 13.8261 17.4264Z" fill="currentColor"></path>
+                                <path clip-rule="evenodd" d="M39.998 12.236C39.9944 12.2537 39.9875 12.2845 39.9748 12.3294C39.9436 12.4399 39.8949 12.5741 39.8346 12.7175C39.8168 12.7597 39.7989 12.8007 39.7813 12.8398C38.5103 13.7113 35.9788 14.9393 33.7095 15.4811C30.9875 16.131 27.6413 16.5217 24 16.5217C20.3587 16.5217 17.0125 16.131 14.2905 15.4811C12.0012 14.9346 9.44505 13.6897 8.18538 12.8168C8.17384 12.7925 8.16216 12.767 8.15052 12.7408C8.09919 12.6249 8.05721 12.5114 8.02977 12.411C8.00356 12.3152 8.00039 12.2667 8.00004 12.2612C8.00004 12.261 8 12.2607 8.00004 12.2612C8.00004 12.2359 8.0104 11.9233 8.68485 11.3686C9.34546 10.8254 10.4222 10.2469 11.9291 9.72276C14.9242 8.68098 19.1919 8 24 8C28.8081 8 33.0758 8.68098 36.0709 9.72276C37.5778 10.2469 38.6545 10.8254 39.3151 11.3686C39.9006 11.8501 39.9857 12.1489 39.998 12.236ZM4.95178 15.2312L21.4543 41.6973C22.6288 43.5809 25.3712 43.5809 26.5457 41.6973L43.0534 15.223C43.0709 15.1948 43.0878 15.1662 43.104 15.1371L41.3563 14.1648C43.104 15.1371 43.1038 15.1374 43.104 15.1371L43.1051 15.135L43.1065 15.1325L43.1101 15.1261L43.1199 15.1082C43.1276 15.094 43.1377 15.0754 43.1497 15.0527C43.1738 15.0075 43.2062 14.9455 43.244 14.8701C43.319 14.7208 43.4196 14.511 43.5217 14.2683C43.6901 13.8679 44 13.0689 44 12.2609C44 10.5573 43.003 9.22254 41.8558 8.2791C40.6947 7.32427 39.1354 6.55361 37.385 5.94477C33.8654 4.72057 29.133 4 24 4C18.867 4 14.1346 4.72057 10.615 5.94478C8.86463 6.55361 7.30529 7.32428 6.14419 8.27911C4.99695 9.22255 3.99999 10.5573 3.99999 12.2609C3.99999 13.1275 4.29264 13.9078 4.49321 14.3607C4.60375 14.6102 4.71348 14.8196 4.79687 14.9689C4.83898 15.0444 4.87547 15.1065 4.9035 15.1529C4.91754 15.1762 4.92954 15.1957 4.93916 15.2111L4.94662 15.223L4.95178 15.2312ZM35.9868 18.996L24 38.22L12.0131 18.996C12.4661 19.1391 12.9179 19.2658 13.3617 19.3718C16.4281 20.1039 20.0901 20.5217 24 20.5217C27.9099 20.5217 31.5719 20.1039 34.6383 19.3718C35.082 19.2658 35.5339 19.1391 35.9868 18.996Z" fill="currentColor" fill-rule="evenodd"></path>
+                            </svg>
+                            <h2 class="text-xl font-bold">Tech Parts</h2>
+                        </div>
+                        <nav class="hidden md:flex items-center gap-6">
+                            <a class="text-sm font-medium hover:text-primary" href="/">Home</a>
+                            <a class="text-sm font-medium hover:text-primary" href="/products">Products</a>
+                            <a class="text-sm font-medium hover:text-primary" href="#">About Us</a>
+                            <a class="text-sm font-medium hover:text-primary" href="#">Contact</a>
+                        </nav>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="relative hidden sm:block">
+                            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                <svg class="h-5 w-5 text-gray-400" fill="currentColor" height="24px" viewBox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+                                </svg>
+                            </div>
+                            <input class="block w-full rounded-lg border-gray-200 dark:border-gray-700 bg-background-light dark:bg-background-dark py-2 pl-10 pr-3 text-sm focus:border-primary focus:ring-primary" placeholder="Search" type="text"/>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <!-- Authentication Status -->
+                            <div th:if="${isAuthenticated == null or !isAuthenticated}">
+                                <a href="/login" class="rounded-lg bg-primary/10 dark:bg-primary/20 px-4 py-2 text-sm font-bold text-primary hover:bg-primary/20 dark:hover:bg-primary/30">
+                                    <span class="truncate">Login/Signup</span>
+                                </a>
+                            </div>
+                            <div th:if="${isAuthenticated}">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-sm text-gray-600 dark:text-gray-300">
+                                        Welcome, <span th:text="${user.firstName}">User</span>!
+                                    </span>
+                                    <form th:action="@{/logout}" method="post" class="inline">
+                                        <button type="submit" class="rounded-lg bg-red-600 px-4 py-2 text-sm font-bold text-white hover:bg-red-700">
+                                            Logout
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                            <button class="rounded-lg bg-primary/10 dark:bg-primary/20 p-2 text-primary hover:bg-primary/20 dark:hover:bg-primary/30">
+                                <svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M222.14,58.87A8,8,0,0,0,216,56H54.68L49.79,29.14A16,16,0,0,0,34.05,16H16a8,8,0,0,0,0,16h18L59.56,172.29a24,24,0,0,0,5.33,11.27,28,28,0,1,0,44.4,8.44h45.42A27.75,27.75,0,0,0,152,204a28,28,0,1,0,28-28H83.17a8,8,0,0,1-7.87-6.57L72.13,152h116a24,24,0,0,0,23.61-19.71l12.16-66.86A8,8,0,0,0,222.14,58.87ZM96,204a12,12,0,1,1-12-12A12,12,0,0,1,96,204Zm96,0a12,12,0,1,1-12-12A12,12,0,0,1,192,204Zm4-74.57A8,8,0,0,1,188.1,136H69.22L57.59,72H206.41Z"></path>
+                                </svg>
+                            </button>
+                            <a class="rounded-full p-2 text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800" href="/user/profile" th:if="${isAuthenticated}">
+                                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <main class="flex-1">
+                <div class="px-4 py-8 sm:px-6 lg:px-8">
+                    <div class="mx-auto max-w-6xl">
+                        <div class="relative min-h-[480px] rounded-xl overflow-hidden">
+                            <div class="absolute inset-0 bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC1WFYbjwm5XVLg5nTUe3yiBFUyiudJFRuncQwwvWgOF5ClnGW7Qi6uTr9a5kjnQLqxUPU2bOpLLh5ymwcedGRAz69ZgeoiTXSZDTAuv0It-Y6XJJRA2TetzdDBv56zkmJ4rUyp4kD4i6ge_56qHK2biDywkD2X8mudLIBItJsoRoqtToj6o9iQtOyzioAfJGB3hdHYxfqVsWA6dlj5NebBqypqMEMA01X5hNBIL2-jrIDOSz6ykb_8QsLSKWlLQm2BqKqH1Jazjgaz");'></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                            <div class="relative flex h-full flex-col items-start justify-end p-8 md:p-12">
+                                <div class="max-w-xl text-white fade-in-up">
+                                    <h1 class="text-4xl font-black leading-tight tracking-tight md:text-5xl">
+                                        Your One-Stop Shop for Computer Spare Parts
+                                    </h1>
+                                    <p class="mt-4 text-base font-normal leading-normal md:text-lg">
+                                        Find everything you need to repair or upgrade your computer. We offer a wide selection of
+                                        high-quality parts at competitive prices.
+                                    </p>
+                                </div>
+                                <a href="/products" class="mt-8 inline-block rounded-lg bg-primary px-5 py-3 text-base font-bold text-white shadow-lg transition-transform duration-200 hover:scale-105 btn-animate">
+                                    Shop Now
+                                </a>
+                            </div>
+                        </div>
+                        <section class="py-12 sm:py-16">
+                            <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white px-4 sm:px-0 fade-in-up">
+                                Popular Products
+                            </h2>
+                            <div class="mt-8 animate-stagger">
+                                <div class="flex snap-x snap-mandatory-x overflow-x-auto pb-4 -mx-4 px-4 gap-6">
+                                    <div class="w-64 shrink-0 snap-start card-animate">
+                                        <div class="h-64 w-full rounded-lg bg-cover bg-center smooth-hover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD6Ap98QYJTSzS6DL7CyKg5-N5riW0XinQ2MwnYcsMNtXT92DYqd8us2wcf4UG20v19IYqKrsnIeIwSDrtAVyGon_FqfgY1ZJ9RiJ5qMwuc9Agc9gnvwf8aTC72cVFNxrUCSD1EA0OekmVIUJer9rzeCiXs_Gpq6yjVP3d7MRVPC66D1Y_qmhsQ5iZn-wzHtn6Q_2vqdbrR68kdw2CXnbbcmo438RJYMg9PIhzB60SbkuDHC2esmZ56FtYGnwwWaFpghc0o0eitacZv");'></div>
+                                        <div class="mt-4">
+                                            <p class="font-medium text-gray-900 dark:text-white">Processors</p>
+                                            <p class="text-sm text-gray-500 dark:text-gray-400">
+                                                High-performance processors for gaming and professional use.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="w-64 shrink-0 snap-start">
+                                        <div class="h-64 w-full rounded-lg bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCCK6i2QwvFcYqcSJOuZcDy3UeCvAIbjyDF82psg5tJ_3-tZV2OKEls0zDNSzBnxAfCnzPvcZBulo3rRj88-nMcUwZ3mERDJzzODR9eqtPXQ1j7J2j2F6BKoMp8x2dZGybFY98hva8gbY9F0mRGs0aPP5NcbZwBNsvVNtTfoQwjSqv7A_Ms7BLX-jb7Hq4z9oSiyNkfJWZHvtc5TBIAkSNFcC64VaXpX2_lSJYA2ayF8W-DJSv_WO0rB7lMXXMJvsVHwNYeajfFt_lD");'></div>
+                                        <div class="mt-4">
+                                            <p class="font-medium text-gray-900 dark:text-white">Motherboards</p>
+                                            <p class="text-sm text-gray-500 dark:text-gray-400">
+                                                Reliable motherboards for all types of builds.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="w-64 shrink-0 snap-start">
+                                        <div class="h-64 w-full rounded-lg bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCJgfk_v8bj4ZTZ3jKgFQxmZvMq9x2azMwiQPWagJcl2aBi_3ADDVQno1laNvXyTgOJItPyk9LgFTBN-kpOfRV6gHZ1AMM8r4yYyVc29cjQV9xq5N-4K1EFdxHfxmXHT5U10yGhXkiKeW4JGaGj4Kr8ZR3OFplHJxU_LKbnp5nxtoX53aK59mQyHSzpK8d5z__aEoc95-Dv88XUdtvWUuSHTywNyv4PgaW7U0CB0B3W5vY1Iom64USw-9C13pTj6bIsDcT0h3R8rlvY");'></div>
+                                        <div class="mt-4">
+                                            <p class="font-medium text-gray-900 dark:text-white">RAM</p>
+                                            <p class="text-sm text-gray-500 dark:text-gray-400">
+                                                Fast and efficient RAM for smooth multitasking.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="w-64 shrink-0 snap-start">
+                                        <div class="h-64 w-full rounded-lg bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB8iPYXTPauM1FiB0fE5TI2afdHbi4ukvmG2S9H3gRpuR9c3GmItW4BEfeZD0hcAFeTl7Wb6ouEtFf3zdOzagOZGC1_rkNhxrGo-MMP9gSZWLsOonccXMmgph8rxFJomzsBD0TPH4j_5ooc7AiMqPxjmjSCFCQY5E99-lRsiW7we2WVplmTshFxWkvHtST2JZYPcjDjbBx5aVsgnh9_45mWMhhkF3b2rusMa_ZDvSSEc8Ogs6JLalKvOhkyMEDfZb_olE-rfAE0TLr1");'></div>
+                                        <div class="mt-4">
+                                            <p class="font-medium text-gray-900 dark:text-white">Hard Drives</p>
+                                            <p class="text-sm text-gray-500 dark:text-gray-400">
+                                                Large-capacity hard drives for storing all your data.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="py-12 sm:py-16">
+                            <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white px-4 sm:px-0">
+                                Featured Brands
+                            </h2>
+                            <div class="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-4">
+                                <div class="aspect-square w-full rounded-lg bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB3K4RougSL0H1NLAy4RuIkpSwYN-sJGcqXBIjBrwC24vZOcuqu2yrTglJn0AjbS9QFtaVLkcWGBPBjilTe0-7ph1j7-k7iCpG_8fKxJNpaBBYzr7l161sg2yyq_pLa8KaW74CTdzNprQJu38XShfbOJG42EAGd29ODGsI22bllD6bT_-oivdCPMlXsQYYjJMKKm0bJWgEW6QbzQFXRQOsm08fovb2IyA89WiYewcLg2O_CGxGcd3Jwn7CiWfqvq7eKeoaysaQP_91C");'></div>
+                                <div class="aspect-square w-full rounded-lg bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCZ2--q4ymlV8-BSgzCqbzVGjSVPii36zgjKvoK06Q0I_wCoZLB0t0QrIi_bxb6R7p-P5IfRTsjXERvccPDYKGN9Ke9EBvAau18niZWa9hCK9l3hw_TTPRosYUp0156wWQ6FdXNcfVywWnhQ9YEaW_KJHvDG5_MoGy3xPO1ZwrNKfWiE_JkRmlqdfEARghcHwVuj3zXjc-Fwcg_3q-jYQLsvNjZcYnX9_ccSAVf04wXNLSabH7MnOcIG7ptZac6Xqvq27mUUhbeZwF-");'></div>
+                                <div class="aspect-square w-full rounded-lg bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBmxisWpPs3FqjlQ3LSEZzJt_TugPl7XtiNNsO3xQxdlVydkJyziqSl7geAxBuJzKeZtpab9Il9UYLy7gUSw7mDKqVefxpcje8m450KpfXdp3hUQty5wzz5bOcJHliGiHUQwdY5LoRJJ6ft-SU9h4dFRqIE3i7XWWC8FFf0yLW-DzpJhPSN-OdwT7Ji1vl-2rPzC6nL5ykBxfmFHcf77eaUuJJMGUcJY__GzPO_bfS2rORW9gZl9xCoDETEy-u_5yyDBPqPxeDKLTme");'></div>
+                                <div class="aspect-square w-full rounded-lg bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBVXZQWoleZzYqlCKAKA7hLQQSep06NCxHA6E_ZYAhnepiceVepxPsDrBHqEu0XAZ2ac2U0RGGqnQblpzhX_7I1kwiX3osn__kr-tIY__JvWS5n-nbbUdAxr0LsCo2qQi5e8W24IKWMcS37o__r9i7ZjovqkS5OGgWRbtM0XF-Xf_kQuxdPpPpUG-y1_SjYTH7mNwM73VKAspJfLQ8xnbNe1qPgybxeFLPapVt08oyUlAkz9tA-d9lKZ7VOeH9dbRbFvQO0KzEK08z3");'></div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </main>
+            <footer class="border-t border-gray-200 dark:border-gray-800">
+                <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+                    <div class="flex flex-col items-center justify-between gap-6 sm:flex-row">
+                        <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+                            <a class="text-sm text-gray-500 hover:text-primary dark:text-gray-400" href="#">About Us</a>
+                            <a class="text-sm text-gray-500 hover:text-primary dark:text-gray-400" href="#">Contact</a>
+                            <a class="text-sm text-gray-500 hover:text-primary dark:text-gray-400" href="#">Privacy Policy</a>
+                            <a class="text-sm text-gray-500 hover:text-primary dark:text-gray-400" href="#">Terms of Service</a>
+                        </nav>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">© 2024 Tech Parts. All rights reserved.</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="/js/page-transitions.js"></script>
+</body>
+</html>

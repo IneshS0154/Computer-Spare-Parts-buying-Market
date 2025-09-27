@@ -1,0 +1,13 @@
+package com.techparts.entity;
+
+public enum RepairLogType {
+    REQUEST_SUBMITTED,
+    REQUEST_APPROVED,
+    REQUEST_REJECTED,
+    REPAIR_STARTED,
+    REPAIR_IN_PROGRESS,
+    REPAIR_COMPLETED,
+    STATUS_UPDATE,
+    ADMIN_NOTE,
+    CUSTOMER_UPDATE
+}

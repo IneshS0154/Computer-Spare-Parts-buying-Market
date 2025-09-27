@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta charset="utf-8"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter%3Awght%40400%3B500%3B700%3B900&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#1173d4",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+            },
+            fontFamily: {
+              "display": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="flex h-full w-full">
+<aside class="w-64 flex-col border-r border-black/10 dark:border-white/10 bg-background-light dark:bg-background-dark hidden lg:flex">
+<div class="flex h-full flex-col justify-between p-4">
+<div class="flex flex-col gap-6">
+<div class="flex items-center gap-2 px-2">
+<span class="material-symbols-outlined text-black dark:text-white text-2xl">
+                memory
+              </span>
+<h1 class="text-lg font-bold text-black dark:text-white">Tech Parts</h1>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-black dark:text-white hover:bg-primary/10 dark:hover:bg-primary/20" href="#">
+<span class="material-symbols-outlined text-lg">
+                  dashboard
+                </span>
+<p class="text-sm font-medium">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-black dark:text-white hover:bg-primary/10 dark:hover:bg-primary/20" href="#">
+<span class="material-symbols-outlined text-lg">
+                  group
+                </span>
+<p class="text-sm font-medium">Users</p>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-black dark:text-white hover:bg-primary/10 dark:hover:bg-primary/20" href="#">
+<span class="material-symbols-outlined text-lg">
+                  receipt_long
+                </span>
+<p class="text-sm font-medium">Orders</p>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 bg-primary/10 dark:bg-primary/20 text-primary" href="#">
+<span class="material-symbols-outlined text-lg">
+                  inventory_2
+                </span>
+<p class="text-sm font-bold">Inventory</p>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-black dark:text-white hover:bg-primary/10 dark:hover:bg-primary/20" href="#">
+<span class="material-symbols-outlined text-lg">
+                  local_shipping
+                </span>
+<p class="text-sm font-medium">Suppliers</p>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-black dark:text-white hover:bg-primary/10 dark:hover:bg-primary/20" href="#">
+<span class="material-symbols-outlined text-lg">
+                  shopping_cart
+                </span>
+<p class="text-sm font-medium">Supplier Orders</p>
+</a>
+</nav>
+</div>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-black dark:text-white hover:bg-primary/10 dark:hover:bg-primary/20" href="#">
+<span class="material-symbols-outlined text-lg">
+                settings
+              </span>
+<p class="text-sm font-medium">Settings</p>
+</a>
+</div>
+</div>
+</aside>
+<main class="flex-1">
+<div class="flex flex-col">
+<header class="flex items-center justify-between gap-4 p-4 border-b border-black/10 dark:border-white/10 lg:p-6">
+<div>
+<h2 class="text-2xl font-bold text-black dark:text-white">Inventory</h2>
+<p class="text-sm text-black/60 dark:text-white/60">Manage your product inventory.</p>
+</div>
+<button class="flex items-center justify-center gap-2 rounded-lg bg-primary h-10 px-4 text-sm font-medium text-white">
+<span class="material-symbols-outlined text-lg">
+                add
+              </span>
+<span>Add Product</span>
+</button>
+</header>
+<div class="p-4 lg:p-6">
+<div class="mb-6">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-black/50 dark:text-white/50">
+                  search
+                </span>
+<input class="w-full rounded-lg bg-black/5 dark:bg-white/5 py-2 pl-10 pr-4 text-black dark:text-white placeholder-black/50 dark:placeholder-white/50 border-transparent focus:border-primary focus:ring-0" placeholder="Search products..." type="text"/>
+</div>
+</div>
+<div class="overflow-x-auto rounded-xl border border-black/10 dark:border-white/10">
+<table class="w-full text-left">
+<thead class="bg-black/5 dark:bg-white/5">
+<tr>
+<th class="p-4 text-sm font-semibold text-black dark:text-white">Product</th>
+<th class="p-4 text-sm font-semibold text-black dark:text-white">Category</th>
+<th class="p-4 text-sm font-semibold text-black dark:text-white">Stock</th>
+<th class="p-4 text-sm font-semibold text-black dark:text-white">Status</th>
+<th class="p-4 text-sm font-semibold text-black dark:text-white"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-black/10 dark:divide-white/10">
+<tr class="hover:bg-black/5 dark:hover:bg-white/5">
+<td class="p-4 text-sm font-medium text-black dark:text-white">High-Performance CPU</td>
+<td class="p-4 text-sm text-black/70 dark:text-white/70">Processors</td>
+<td class="p-4 text-sm text-black/70 dark:text-white/70">150</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
+                        In Stock
+                      </span>
+</td>
+<td class="p-4 text-right">
+<button class="text-sm font-medium text-primary hover:underline">Edit</button>
+</td>
+</tr>
+<tr class="hover:bg-black/5 dark:hover:bg-white/5">
+<td class="p-4 text-sm font-medium text-black dark:text-white">Gaming Motherboard</td>
+<td class="p-4 text-sm text-black/70 dark:text-white/70">Motherboards</td>
+<td class="p-4 text-sm text-black/70 dark:text-white/70">80</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
+                          In Stock
+                        </span>
+</td>
+<td class="p-4 text-right">
+<button class="text-sm font-medium text-primary hover:underline">Edit</button>
+</td>
+</tr>
+<tr class="hover:bg-black/5 dark:hover:bg-white/5">
+<td class="p-4 text-sm font-medium text-black dark:text-white">16GB DDR5 RAM</td>
+<td class="p-4 text-sm text-black/70 dark:text-white/70">Memory</td>
+<td class="p-4 text-sm text-black/70 dark:text-white/70">200</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
+                          In Stock
+                        </span>
+</td>
+<td class="p-4 text-right">
+<button class="text-sm font-medium text-primary hover:underline">Edit</button>
+</td>
+</tr>
+<tr class="hover:bg-black/5 dark:hover:bg-white/5">
+<td class="p-4 text-sm font-medium text-black dark:text-white">1TB NVMe SSD</td>
+<td class="p-4 text-sm text-black/70 dark:text-white/70">Storage</td>
+<td class="p-4 text-sm text-black/70 dark:text-white/70">120</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
+                          In Stock
+                        </span>
+</td>
+<td class="p-4 text-right">
+<button class="text-sm font-medium text-primary hover:underline">Edit</button>
+</td>
+</tr>
+<tr class="hover:bg-black/5 dark:hover:bg-white/5">
+<td class="p-4 text-sm font-medium text-black dark:text-white">750W Power Supply</td>
+<td class="p-4 text-sm text-black/70 dark:text-white/70">Power Supplies</td>
+<td class="p-4 text-sm text-black/70 dark:text-white/70">50</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
+                          In Stock
+                        </span>
+</td>
+<td class="p-4 text-right">
+<button class="text-sm font-medium text-primary hover:underline">Edit</button>
+</td>
+</tr>
+<tr class="hover:bg-black/5 dark:hover:bg-white/5">
+<td class="p-4 text-sm font-medium text-black dark:text-white">Liquid CPU Cooler</td>
+<td class="p-4 text-sm text-black/70 dark:text-white/70">Cooling</td>
+<td class="p-4 text-sm text-black/70 dark:text-white/70">75</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
+                          In Stock
+                        </span>
+</td>
+<td class="p-4 text-right">
+<button class="text-sm font-medium text-primary hover:underline">Edit</button>
+</td>
+</tr>
+<tr class="hover:bg-black/5 dark:hover:bg-white/5">
+<td class="p-4 text-sm font-medium text-black dark:text-white">Gaming Case</td>
+<td class="p-4 text-sm text-black/70 dark:text-white/70">Cases</td>
+<td class="p-4 text-sm text-black/70 dark:text-white/70">40</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
+                          In Stock
+                        </span>
+</td>
+<td class="p-4 text-right">
+<button class="text-sm font-medium text-primary hover:underline">Edit</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

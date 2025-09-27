@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Tech Parts Admin</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "foreground-light": "#0d141b",
+                        "foreground-dark": "#f6f7f8",
+                        "card-light": "#ffffff",
+                        "card-dark": "#1a2530",
+                        "border-light": "#e7edf3",
+                        "border-dark": "#2c3a47",
+                        "subtle-light": "#9ca3af",
+                        "subtle-dark": "#6b7280"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-foreground-light dark:text-foreground-dark">
+    <div class="flex h-screen">
+        <aside class="w-64 flex flex-col border-r border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark">
+            <div class="flex items-center gap-3 px-6 py-5 border-b border-border-light dark:border-border-dark">
+                <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 3H21L18 12L21 21H3L6 12L3 3Z"></path>
+                </svg>
+                <h1 class="text-xl font-bold">Tech Parts</h1>
+            </div>
+            <nav class="flex-1 px-4 py-6 space-y-2">
+                <a class="flex items-center gap-3 px-4 py-2 rounded-lg bg-primary/10 text-primary font-semibold" href="#">
+                    <span class="material-symbols-outlined">dashboard</span>
+                    Dashboard
+                </a>
+                <a class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors" href="#">
+                    <span class="material-symbols-outlined">group</span>
+                    Users
+                </a>
+                <a class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors" href="#">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                    Orders
+                </a>
+                <a class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors" href="#">
+                    <span class="material-symbols-outlined">inventory_2</span>
+                    Inventory
+                </a>
+                <a class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors" href="#">
+                    <span class="material-symbols-outlined">local_shipping</span>
+                    Suppliers
+                </a>
+                <a class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors" href="#">
+                    <span class="material-symbols-outlined">receipt_long</span>
+                    Supplier Orders
+                </a>
+            </nav>
+            <div class="p-4 border-t border-border-light dark:border-border-dark">
+                <div class="flex items-center gap-3">
+                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCZj8oXRP7o71T7G77Q0IFK2Bx80lUix_xsQxwdt9RyzlNmCk1IBzKeO67Q3tlZyz70PVN1jQodkGM9CqonhX0KeykMIliX9LeK7p3OAtRNm0A29zuneg_LYPklhPeYiXipbfRDfMjSpJiVvmY7EZVaU9YNhp5zwEJr5oStlHdUybgNNvyodQsqAGsMb6MCH9obQ16K_lSBgvovaeDh8AJv4UD0N1i_U2_4WOR78EsWZRW53TNjd5DgXnIikkv0U2KveG2apCqgqtG5");'></div>
+                    <div>
+                        <p class="font-semibold text-sm">Admin User</p>
+                        <a class="text-xs text-subtle-light dark:text-subtle-dark hover:text-primary" href="#">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <main class="flex-1 p-8 overflow-y-auto">
+            <header class="flex items-center justify-between mb-8">
+                <h2 class="text-3xl font-bold">Dashboard Overview</h2>
+                <div class="flex items-center gap-4">
+                    <button class="flex items-center justify-center rounded-full size-10 bg-card-light dark:bg-card-dark border border-border-light dark:border-border-dark">
+                        <span class="material-symbols-outlined text-subtle-light dark:text-subtle-dark">notifications</span>
+                    </button>
+                    <button class="bg-primary text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2">
+                        <span class="material-symbols-outlined">add</span>
+                        New Product
+                    </button>
+                </div>
+            </header>
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+                <div class="bg-card-light dark:bg-card-dark p-6 rounded-xl border border-border-light dark:border-border-dark flex flex-col gap-4">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-primary/10 text-primary p-3 rounded-lg">
+                            <span class="material-symbols-outlined text-2xl">group</span>
+                        </div>
+                        <p class="text-lg font-semibold">Total Users</p>
+                    </div>
+                    <p class="text-4xl font-bold">1,234</p>
+                    <p class="text-sm text-subtle-light dark:text-subtle-dark">+15% from last month</p>
+                </div>
+                <div class="bg-card-light dark:bg-card-dark p-6 rounded-xl border border-border-light dark:border-border-dark flex flex-col gap-4">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-primary/10 text-primary p-3 rounded-lg">
+                            <span class="material-symbols-outlined text-2xl">shopping_cart</span>
+                        </div>
+                        <p class="text-lg font-semibold">Total Orders</p>
+                    </div>
+                    <p class="text-4xl font-bold">567</p>
+                    <p class="text-sm text-subtle-light dark:text-subtle-dark">+8% from last month</p>
+                </div>
+                <div class="bg-card-light dark:bg-card-dark p-6 rounded-xl border border-border-light dark:border-border-dark flex flex-col gap-4">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-primary/10 text-primary p-3 rounded-lg">
+                            <span class="material-symbols-outlined text-2xl">inventory</span>
+                        </div>
+                        <p class="text-lg font-semibold">Items in Inventory</p>
+                    </div>
+                    <p class="text-4xl font-bold">890</p>
+                    <p class="text-sm text-subtle-light dark:text-subtle-dark">25 new items added</p>
+                </div>
+                <div class="bg-card-light dark:bg-card-dark p-6 rounded-xl border border-border-light dark:border-border-dark flex flex-col gap-4">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-primary/10 text-primary p-3 rounded-lg">
+                            <span class="material-symbols-outlined text-2xl">local_shipping</span>
+                        </div>
+                        <p class="text-lg font-semibold">Suppliers</p>
+                    </div>
+                    <p class="text-4xl font-bold">42</p>
+                    <p class="text-sm text-subtle-light dark:text-subtle-dark">+5 new suppliers</p>
+                </div>
+            </div>
+            <div class="mt-12">
+                <h3 class="text-2xl font-bold mb-6">Quick Actions</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                    <a class="flex flex-col items-center justify-center p-6 bg-card-light dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark hover:shadow-lg hover:border-primary transition-all group" href="#">
+                        <div class="bg-primary/10 text-primary p-4 rounded-full mb-4">
+                            <span class="material-symbols-outlined text-3xl">manage_accounts</span>
+                        </div>
+                        <p class="font-semibold text-center">Manage Users</p>
+                    </a>
+                    <a class="flex flex-col items-center justify-center p-6 bg-card-light dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark hover:shadow-lg hover:border-primary transition-all group" href="#">
+                        <div class="bg-primary/10 text-primary p-4 rounded-full mb-4">
+                            <span class="material-symbols-outlined text-3xl">list_alt</span>
+                        </div>
+                        <p class="font-semibold text-center">Manage Orders</p>
+                    </a>
+                    <a class="flex flex-col items-center justify-center p-6 bg-card-light dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark hover:shadow-lg hover:border-primary transition-all group" href="#">
+                        <div class="bg-primary/10 text-primary p-4 rounded-full mb-4">
+                            <span class="material-symbols-outlined text-3xl">inventory_2</span>
+                        </div>
+                        <p class="font-semibold text-center">Manage Inventory</p>
+                    </a>
+                    <a class="flex flex-col items-center justify-center p-6 bg-card-light dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark hover:shadow-lg hover:border-primary transition-all group" href="#">
+                        <div class="bg-primary/10 text-primary p-4 rounded-full mb-4">
+                            <span class="material-symbols-outlined text-3xl">local_shipping</span>
+                        </div>
+                        <p class="font-semibold text-center">Supplier Management</p>
+                    </a>
+                    <a class="flex flex-col items-center justify-center p-6 bg-card-light dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark hover:shadow-lg hover:border-primary transition-all group" href="#">
+                        <div class="bg-primary/10 text-primary p-4 rounded-full mb-4">
+                            <span class="material-symbols-outlined text-3xl">receipt_long</span>
+                        </div>
+                        <p class="font-semibold text-center">Supplier Order Management</p>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

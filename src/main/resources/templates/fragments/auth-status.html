@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Status Fragment</title>
+</head>
+<body>
+    <div th:fragment="authStatus">
+        <!-- Login/Signup button for non-authenticated users -->
+        <div th:if="${!isAuthenticated}">
+            <a href="/login" class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                Login/Signup
+            </a>
+        </div>
+        
+        <!-- Logout button for authenticated users -->
+        <div th:if="${isAuthenticated}">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-600 dark:text-gray-300">
+                    Welcome, <span th:text="${user.firstName}">User</span>!
+                </span>
+                <form th:action="@{/logout}" method="post" class="inline">
+                    <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors">
+                        Logout
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

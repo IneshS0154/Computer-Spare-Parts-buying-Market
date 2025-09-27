@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1173d4",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+              "foreground-light": "#101922",
+              "foreground-dark": "#f6f7f8",
+              "subtle-light": "#e5e7eb",
+              "subtle-dark": "#1f2937",
+              "muted-light": "#6b7280",
+              "muted-dark": "#9ca3af",
+            },
+            fontFamily: {
+              display: ["Inter"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-foreground-light dark:text-foreground-dark">
+<div class="flex min-h-screen w-full flex-col">
+<header class="flex items-center justify-between border-b border-subtle-light dark:border-subtle-dark px-6 py-3 md:px-10">
+<div class="flex items-center gap-4">
+<svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 6H42L36 24L42 42H6L12 24L6 6Z" fill="currentColor"></path>
+</svg>
+<h1 class="text-lg font-bold">Tech Parts Admin</h1>
+</div>
+<div class="hidden items-center gap-8 md:flex">
+<nav class="flex items-center gap-6">
+<a class="text-sm font-medium text-muted-light dark:text-muted-dark hover:text-primary" href="#">Dashboard</a>
+<a class="text-sm font-medium text-primary" href="#">Users</a>
+<a class="text-sm font-medium text-muted-light dark:text-muted-dark hover:text-primary" href="#">Products</a>
+<a class="text-sm font-medium text-muted-light dark:text-muted-dark hover:text-primary" href="#">Orders</a>
+<a class="text-sm font-medium text-muted-light dark:text-muted-dark hover:text-primary" href="#">Reports</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="rounded-full p-2 hover:bg-subtle-light dark:hover:bg-subtle-dark">
+<span class="material-symbols-outlined text-muted-light dark:text-muted-dark"> notifications </span>
+</button>
+<div class="h-10 w-10 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCHAxXNl-uNC5X2V8yNLjfYctK21415nnV3oqhFsAEbB6nuQZP04bW_sni0fVIykGXgpfwKAPuJNOKYlJ-F679POix2s8Y5A6X4KiyxSC8hY50r5K8uCHWtrtUkUH2FaISeIr72T4VR3XelLPMnEnp7PScUeQOVmLFoblUQRP-7B07v9hum88YCAb0dyphoVCv_4waSb7g16vcEg3tIkWwAaE6QfCUz7ds6xT4vtARvamZlG65dBZrl4kRZEZ77jBIgximkBueHOkM");'></div>
+</div>
+</div>
+<button class="md:hidden">
+<span class="material-symbols-outlined"> menu </span>
+</button>
+</header>
+<main class="flex-1 px-4 py-8 sm:px-6 md:px-10">
+<div class="mx-auto max-w-7xl">
+<div class="mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+<div>
+<h2 class="text-2xl font-bold tracking-tight">User Management</h2>
+<p class="text-muted-light dark:text-muted-dark">Manage user accounts and permissions.</p>
+</div>
+<button class="flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white">
+<span class="material-symbols-outlined"> add </span>
+              Add User
+            </button>
+</div>
+<div class="mb-6 flex flex-col gap-4 md:flex-row">
+<div class="relative flex-1">
+<span class="material-symbols-outlined pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted-light dark:text-muted-dark"> search </span>
+<input class="w-full rounded-lg border border-subtle-light dark:border-subtle-dark bg-transparent py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Search users by name or email" type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 rounded-lg border border-subtle-light dark:border-subtle-dark px-3 py-2 text-sm hover:bg-subtle-light dark:hover:bg-subtle-dark">
+<span>Role</span>
+<span class="material-symbols-outlined text-sm"> expand_more </span>
+</button>
+<button class="flex items-center gap-2 rounded-lg border border-subtle-light dark:border-subtle-dark px-3 py-2 text-sm hover:bg-subtle-light dark:hover:bg-subtle-dark">
+<span>Status</span>
+<span class="material-symbols-outlined text-sm"> expand_more </span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto rounded-lg border border-subtle-light dark:border-subtle-dark">
+<table class="w-full table-auto">
+<thead class="bg-subtle-light/50 dark:bg-subtle-dark/50">
+<tr>
+<th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-light dark:text-muted-dark">User</th>
+<th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-light dark:text-muted-dark">Role</th>
+<th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-light dark:text-muted-dark">Status</th>
+<th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-light dark:text-muted-dark">Date Joined</th>
+<th class="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-muted-light dark:text-muted-dark">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-subtle-light dark:divide-subtle-dark">
+<tr class="hover:bg-subtle-light/50 dark:hover:bg-subtle-dark/50">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAuxKSnI4FDcHlX6zK30dLjOO_GeUdlLe7g0qVaZE7G27pL3Ebza-r0lh3UL2DFciRtr1819MWp2Re5YomEu6oQDIEZ8ZkEbyGCxx4FCCv2pifHe6o_kAu7vm5moLbEsmOS3GgQRA9XBPESOKl9POg1rif8EAg10LuZUsYsVa_L3spMolv13_3kpUL6nt2bGa-bsmUiZVtSAh7VyuEIeEEY2JFIiCRxYjkLBCtXMjvfisH-nV5fRPEkkr1Md3xVNsw6onhWCxTlFzcM");'></div>
+<div>
+<div class="font-medium">Ethan Harper</div>
+<div class="text-sm text-muted-light dark:text-muted-dark">ethan.harper@example.com</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-muted-light dark:text-muted-dark">Admin</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">
+<span class="mr-1.5 h-2 w-2 rounded-full bg-primary"></span>
+                      Active
+                    </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-muted-light dark:text-muted-dark">2023-01-15</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1 text-muted-light dark:text-muted-dark hover:text-primary"><span class="material-symbols-outlined text-base">edit</span></button>
+<button class="p-1 text-muted-light dark:text-muted-dark hover:text-red-500"><span class="material-symbols-outlined text-base">delete</span></button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-subtle-light/50 dark:hover:bg-subtle-dark/50">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAuxKSnI4FDcHlX6zK30dLjOO_GeUdlLe7g0qVaZE7G27pL3Ebza-r0lh3UL2DFciRtr1819MWp2Re5YomEu6oQDIEZ8ZkEbyGCxx4FCCv2pifHe6o_kAu7vm5moLbEsmOS3GgQRA9XBPESOKl9POg1rif8EAg10LuZUsYsVa_L3spMolv13_3kpUL6nt2bGa-bsmUiZVtSAh7VyuEIeEEY2JFIiCRxYjkLBCtXMjvfisH-nV5fRPEkkr1Md3xVNsw6onhWCxTlFzcM");'></div>
+<div>
+<div class="font-medium">Olivia Bennett</div>
+<div class="text-sm text-muted-light dark:text-muted-dark">olivia.bennett@example.com</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-muted-light dark:text-muted-dark">Manager</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">
+<span class="mr-1.5 h-2 w-2 rounded-full bg-primary"></span>
+                      Active
+                    </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-muted-light dark:text-muted-dark">2023-02-20</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1 text-muted-light dark:text-muted-dark hover:text-primary"><span class="material-symbols-outlined text-base">edit</span></button>
+<button class="p-1 text-muted-light dark:text-muted-dark hover:text-red-500"><span class="material-symbols-outlined text-base">delete</span></button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-subtle-light/50 dark:hover:bg-subtle-dark/50">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAuxKSnI4FDcHlX6zK30dLjOO_GeUdlLe7g0qVaZE7G27pL3Ebza-r0lh3UL2DFciRtr1819MWp2Re5YomEu6oQDIEZ8ZkEbyGCxx4FCCv2pifHe6o_kAu7vm5moLbEsmOS3GgQRA9XBPESOKl9POg1rif8EAg10LuZUsYsVa_L3spMolv13_3kpUL6nt2bGa-bsmUiZVtSAh7VyuEIeEEY2JFIiCRxYjkLBCtXMjvfisH-nV5fRPEkkr1Md3xVNsw6onhWCxTlFzcM");'></div>
+<div>
+<div class="font-medium">Liam Carter</div>
+<div class="text-sm text-muted-light dark:text-muted-dark">liam.carter@example.com</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-muted-light dark:text-muted-dark">Support</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center rounded-full bg-muted-light/20 px-2.5 py-0.5 text-xs font-medium text-muted-light dark:text-muted-dark">
+<span class="mr-1.5 h-2 w-2 rounded-full bg-muted-light dark:bg-muted-dark"></span>
+                      Inactive
+                    </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-muted-light dark:text-muted-dark">2023-03-10</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1 text-muted-light dark:text-muted-dark hover:text-primary"><span class="material-symbols-outlined text-base">edit</span></button>
+<button class="p-1 text-muted-light dark:text-muted-dark hover:text-red-500"><span class="material-symbols-outlined text-base">delete</span></button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-subtle-light/50 dark:hover:bg-subtle-dark/50">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAuxKSnI4FDcHlX6zK30dLjOO_GeUdlLe7g0qVaZE7G27pL3Ebza-r0lh3UL2DFciRtr1819MWp2Re5YomEu6oQDIEZ8ZkEbyGCxx4FCCv2pifHe6o_kAu7vm5moLbEsmOS3GgQRA9XBPESOKl9POg1rif8EAg10LuZUsYsVa_L3spMolv13_3kpUL6nt2bGa-bsmUiZVtSAh7VyuEIeEEY2JFIiCRxYjkLBCtXMjvfisH-nV5fRPEkkr1Md3xVNsw6onhWCxTlFzcM");'></div>
+<div>
+<div class="font-medium">Sophia Davis</div>
+<div class="text-sm text-muted-light dark:text-muted-dark">sophia.davis@example.com</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-muted-light dark:text-muted-dark">Sales</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">
+<span class="mr-1.5 h-2 w-2 rounded-full bg-primary"></span>
+                      Active
+                    </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-muted-light dark:text-muted-dark">2023-04-05</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1 text-muted-light dark:text-muted-dark hover:text-primary"><span class="material-symbols-outlined text-base">edit</span></button>
+<button class="p-1 text-muted-light dark:text-muted-dark hover:text-red-500"><span class="material-symbols-outlined text-base">delete</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-6 flex items-center justify-between">
+<p class="text-sm text-muted-light dark:text-muted-dark">Showing <span class="font-semibold">1</span> to <span class="font-semibold">10</span> of <span class="font-semibold">97</span> results</p>
+<div class="flex items-center gap-2">
+<button class="rounded-lg border border-subtle-light dark:border-subtle-dark p-2 text-sm hover:bg-subtle-light dark:hover:bg-subtle-dark disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined"> chevron_left </span>
+</button>
+<button class="rounded-lg border border-subtle-light dark:border-subtle-dark p-2 text-sm hover:bg-subtle-light dark:hover:bg-subtle-dark">
+<span class="material-symbols-outlined"> chevron_right </span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

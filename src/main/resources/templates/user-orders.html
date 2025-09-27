@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tech Parts - Order History</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24
+        }
+    </style>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="flex flex-col min-h-screen">
+<header class="bg-background-light dark:bg-background-dark/50 backdrop-blur-sm sticky top-0 z-20 border-b border-background-dark/10 dark:border-background-light/10">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center gap-8">
+<a class="flex items-center gap-2 text-primary" href="#">
+<svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5-10-5-10 5z"></path>
+</svg>
+<span class="text-xl font-bold text-background-dark dark:text-background-light">TechParts</span>
+</a>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium text-background-dark/80 dark:text-background-light/80 hover:text-primary dark:hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-sm font-medium text-background-dark/80 dark:text-background-light/80 hover:text-primary dark:hover:text-primary transition-colors" href="#">Products</a>
+<a class="text-sm font-medium text-background-dark/80 dark:text-background-light/80 hover:text-primary dark:hover:text-primary transition-colors" href="#">Support</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-background-dark/50 dark:text-background-light/50">search</span>
+<input class="w-full pl-10 pr-4 py-2 rounded-lg bg-background-light/50 dark:bg-background-dark/50 border border-background-dark/10 dark:border-background-light/10 focus:ring-2 focus:ring-primary focus:border-primary transition text-background-dark dark:text-background-light" placeholder="Search..." type="text"/>
+</div>
+<button class="p-2 rounded-full text-background-dark/80 dark:text-background-light/80 hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary dark:hover:text-primary transition-colors">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDwxs9e-X_UPv5L5nl5mFGLIrBKh1n_WcWEfgTRljTX2ik8gqdngvbHwF89GG1uPrhsV3EtLm5He4FjpL7w3vsCGFfyA-J_Ud4t4gH--wzAdEvfYztlpXejk_W7_p0tlOYqUCV99guxAQds-xDl6kLO6eP70kB5YsFYmbqUR4uyqfZahYENedLjBH5QnOAwha9cZs207p59gqct0O_ntAVUoEcF4rrrUxboFMI5Yh8CPti4yubAyKmadEyMk1-TAp_eQe3Om3uvlhFc')"></div>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="max-w-4xl mx-auto">
+<h1 class="text-3xl font-bold text-background-dark dark:text-background-light mb-6">Order History</h1>
+<div class="space-y-4">
+<details class="group bg-background-light dark:bg-background-dark/50 rounded-lg shadow-sm transition-all duration-300 overflow-hidden border border-background-dark/10 dark:border-background-light/10">
+<summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-primary/5 dark:hover:bg-primary/10">
+<div>
+<p class="font-semibold text-background-dark dark:text-background-light">Order #12345</p>
+<p class="text-sm text-background-dark/60 dark:text-background-light/60">Date: 2023-11-15 | Total: $150.00</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-sm font-medium text-primary">View Details</span>
+<span class="material-symbols-outlined transform transition-transform duration-300 group-open:rotate-180 text-background-dark/60 dark:text-background-light/60">expand_more</span>
+</div>
+</summary>
+<div class="p-4 border-t border-background-dark/10 dark:border-background-light/10">
+<h3 class="text-lg font-semibold mb-3 text-background-dark dark:text-background-light">Items</h3>
+<ul class="space-y-3">
+<li class="flex items-center justify-between">
+<div>
+<p class="font-medium text-background-dark dark:text-background-light">CPU Cooler Master 212</p>
+<p class="text-sm text-background-dark/60 dark:text-background-light/60">Qty: 1 - $35.00</p>
+</div>
+<button class="px-3 py-1 text-xs font-medium rounded-full bg-primary text-white hover:bg-opacity-90 transition">Apply for Warranty</button>
+</li>
+<li class="flex items-center justify-between">
+<div>
+<p class="font-medium text-background-dark dark:text-background-light">GeForce RTX 3060</p>
+<p class="text-sm text-background-dark/60 dark:text-background-light/60">Qty: 1 - $115.00</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details class="group bg-background-light dark:bg-background-dark/50 rounded-lg shadow-sm transition-all duration-300 overflow-hidden border border-background-dark/10 dark:border-background-light/10">
+<summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-primary/5 dark:hover:bg-primary/10">
+<div>
+<p class="font-semibold text-background-dark dark:text-background-light">Order #67890</p>
+<p class="text-sm text-background-dark/60 dark:text-background-light/60">Date: 2023-10-20 | Total: $220.00</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-sm font-medium text-primary">View Details</span>
+<span class="material-symbols-outlined transform transition-transform duration-300 group-open:rotate-180 text-background-dark/60 dark:text-background-light/60">expand_more</span>
+</div>
+</summary>
+<div class="p-4 border-t border-background-dark/10 dark:border-background-light/10">
+<h3 class="text-lg font-semibold mb-3 text-background-dark dark:text-background-light">Items</h3>
+<ul class="space-y-3">
+<li class="flex items-center justify-between">
+<div>
+<p class="font-medium text-background-dark dark:text-background-light">1TB NVMe SSD</p>
+<p class="text-sm text-background-dark/60 dark:text-background-light/60">Qty: 2 - $120.00</p>
+</div>
+<button class="px-3 py-1 text-xs font-medium rounded-full bg-primary/20 dark:bg-primary/30 text-primary dark:text-primary hover:bg-primary/30 dark:hover:bg-primary/40 transition">Apply for Warranty</button>
+</li>
+<li class="flex items-center justify-between">
+<div>
+<p class="font-medium text-background-dark dark:text-background-light">16GB DDR4 RAM</p>
+<p class="text-sm text-background-dark/60 dark:text-background-light/60">Qty: 1 - $100.00</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<div class="bg-background-light dark:bg-background-dark/50 rounded-lg shadow-sm border border-background-dark/10 dark:border-background-light/10">
+<div class="flex items-center justify-between p-4">
+<div>
+<p class="font-semibold text-background-dark dark:text-background-light">Order #11223</p>
+<p class="text-sm text-background-dark/60 dark:text-background-light/60">Date: 2023-09-05 | Total: $85.00</p>
+</div>
+<a class="text-sm font-medium text-primary hover:underline" href="#">View Details</a>
+</div>
+</div>
+<div class="bg-background-light dark:bg-background-dark/50 rounded-lg shadow-sm border border-background-dark/10 dark:border-background-light/10">
+<div class="flex items-center justify-between p-4">
+<div>
+<p class="font-semibold text-background-dark dark:text-background-light">Order #44556</p>
+<p class="text-sm text-background-dark/60 dark:text-background-light/60">Date: 2023-08-12 | Total: $300.00</p>
+</div>
+<a class="text-sm font-medium text-primary hover:underline" href="#">View Details</a>
+</div>
+</div>
+<div class="bg-background-light dark:bg-background-dark/50 rounded-lg shadow-sm border border-background-dark/10 dark:border-background-light/10">
+<div class="flex items-center justify-between p-4">
+<div>
+<p class="font-semibold text-background-dark dark:text-background-light">Order #77889</p>
+<p class="text-sm text-background-dark/60 dark:text-background-light/60">Date: 2023-07-28 | Total: $110.00</p>
+</div>
+<a class="text-sm font-medium text-primary hover:underline" href="#">View Details</a>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

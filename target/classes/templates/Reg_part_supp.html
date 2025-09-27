@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+        <title>Supplier Dashboard - Register New Part</title>
+        <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+        <link href="https://fonts.googleapis.com" rel="preconnect"/>
+        <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+        <script>
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        colors: {
+                            "primary": "#1173d4",
+                            "background-light": "#f6f7f8",
+                            "background-dark": "#101922",
+                            "content-light": "#ffffff",
+                            "content-dark": "#1a2632",
+                            "text-light": "#0d141b",
+                            "text-dark": "#e0e7ee",
+                            "subtext-light": "#64748b",
+                            "subtext-dark": "#94a3b8",
+                            "border-light": "#e2e8f0",
+                            "border-dark": "#334155",
+                        },
+                        fontFamily: {
+                            "display": ["Inter", "sans-serif"]
+                        },
+                        borderRadius: {
+                            "DEFAULT": "0.5rem",
+                            "lg": "0.75rem",
+                            "xl": "1rem",
+                            "full": "9999px"
+                        },
+                    },
+                },
+            }
+        </script>
+        <style>
+            .material-symbols-outlined {
+                font-variation-settings:
+                    'FILL' 0,
+                    'wght' 400,
+                    'GRAD' 0,
+                    'opsz' 24
+            }
+        </style>
+    </head>
+    <body class="font-display bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">
+        <div class="flex flex-col min-h-screen">
+            <header class="bg-content-light dark:bg-content-dark border-b border-border-light dark:border-border-dark sticky top-0 z-10">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex items-center justify-between h-16">
+                        <div class="flex items-center gap-4">
+                            <div class="text-primary">
+                                <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2L4.5 5V12.5C4.5 17.15 7.85 21.46 12 22.5C16.15 21.46 19.5 17.15 19.5 12.5V5L12 2ZM11 16H13V18H11V16ZM11 6H13V14H11V6Z"></path>
+                                </svg>
+                            </div>
+                            <h1 class="text-xl font-bold">Tech Parts Inc.</h1>
+                        </div>
+                        <nav class="hidden md:flex items-center gap-6">
+                            <a class="text-sm font-medium text-subtext-light dark:text-subtext-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">Dashboard</a>
+                            <a class="text-sm font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">Inventory</a>
+                            <a class="text-sm font-medium text-subtext-light dark:text-subtext-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">Orders</a>
+                            <a class="text-sm font-medium text-subtext-light dark:text-subtext-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">Support</a>
+                        </nav>
+                        <div class="flex items-center gap-4">
+                            <button class="p-2 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors">
+                                <span class="material-symbols-outlined">notifications</span>
+                            </button>
+                            <div class="w-10 h-10 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCpJxsGx5Ie6jLx0M91JkQK5CFsS3WWZMN0v-92faD6oOtM_PPPzPQqddo3PDSAE4aC8xaiH7zr-E_Zwq7sVPWmS7133CzdMMXDkGOmS8hCcgu12AzpalTt-oBxBLACuNmOEXcul81UoxaD8vYFzzz1CrXzbxHooelKAcVpv8ANFxdUUxhTd-S0uZoEtwPUX8e0tLJiKPYJKtF-sSa5LWuX44qVlRkpPlLpyH9RgW2_8P6W2dFS4SnVX56BIMmRV5ECTvTDYwPqQR8X");'></div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div class="max-w-4xl mx-auto">
+                    <div class="mb-8">
+                        <h2 class="text-3xl font-bold text-text-light dark:text-text-dark">Register New Part</h2>
+                        <p class="text-subtext-light dark:text-subtext-dark mt-1">Fill in the details below to submit a new part for admin approval.</p>
+                    </div>
+                    <div class="bg-content-light dark:bg-content-dark p-6 sm:p-8 rounded-lg shadow-sm">
+                        <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-medium mb-1" for="part-name">Part Name</label>
+                                <input class="w-full bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-md px-4 py-2.5 focus:ring-primary focus:border-primary transition-colors" id="part-name" placeholder="e.g., GeForce RTX 4090" type="text"/>
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-medium mb-1" for="description">Description</label>
+                                <textarea class="w-full bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-md px-4 py-2.5 focus:ring-primary focus:border-primary transition-colors" id="description" placeholder="Provide a detailed description of the part..." rows="4"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-1" for="category">Category</label>
+                                <select class="w-full bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-md px-4 py-2.5 focus:ring-primary focus:border-primary transition-colors appearance-none bg-no-repeat bg-right-4" id="category" style="background-image: url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 fill=%27none%27 viewBox=%270 0 20 20%27%3e%3cpath stroke=%27%236b7280%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%271.5%27 d=%27M6 8l4 4 4-4%27/%3e%3c/svg%3e');">
+                                    <option>Select a category</option>
+                                    <option>CPU</option>
+                                    <option>GPU</option>
+                                    <option>Motherboard</option>
+                                    <option>RAM</option>
+                                    <option>Storage</option>
+                                    <option>Power Supply</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-1" for="price">Suggested Price ($)</label>
+                                <input class="w-full bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-md px-4 py-2.5 focus:ring-primary focus:border-primary transition-colors" id="price" placeholder="e.g., 1599.99" type="number"/>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-1" for="quantity">Quantity</label>
+                                <input class="w-full bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-md px-4 py-2.5 focus:ring-primary focus:border-primary transition-colors" id="quantity" placeholder="e.g., 50" type="number"/>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-1" for="manufacturer">Manufacturer</label>
+                                <input class="w-full bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-md px-4 py-2.5 focus:ring-primary focus:border-primary transition-colors" id="manufacturer" placeholder="e.g., NVIDIA" type="text"/>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-1" for="model-number">Model Number</label>
+                                <input class="w-full bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-md px-4 py-2.5 focus:ring-primary focus:border-primary transition-colors" id="model-number" placeholder="e.g., 900-1G136-2530-000" type="text"/>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-1" for="warranty">Warranty Period (months)</label>
+                                <input class="w-full bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-md px-4 py-2.5 focus:ring-primary focus:border-primary transition-colors" id="warranty" placeholder="e.g., 36" type="number"/>
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-medium mb-1" for="images">Part Images</label>
+                                <div class="flex items-center justify-center w-full">
+                                    <label class="flex flex-col items-center justify-center w-full h-40 border-2 border-border-light dark:border-border-dark border-dashed rounded-lg cursor-pointer bg-background-light dark:bg-background-dark hover:bg-primary/5 dark:hover:bg-primary/10 transition-colors" for="dropzone-file">
+                                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                            <span class="material-symbols-outlined text-subtext-light dark:text-subtext-dark text-4xl">cloud_upload</span>
+                                            <p class="mb-2 text-sm text-subtext-light dark:text-subtext-dark"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                                            <p class="text-xs text-subtext-light dark:text-subtext-dark">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+                                        </div>
+                                        <input class="hidden" id="dropzone-file" multiple="" type="file"/>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="md:col-span-2 flex justify-end gap-4 mt-4">
+                                <button class="px-6 py-2.5 rounded-md bg-content-light dark:bg-content-dark border border-border-light dark:border-border-dark text-sm font-semibold hover:bg-background-light dark:hover:bg-background-dark transition-colors" type="button">
+                                    Save Draft
+                                </button>
+                                <button class="px-6 py-2.5 rounded-md bg-primary text-white text-sm font-semibold hover:bg-primary/90 transition-colors flex items-center gap-2" type="submit">
+                                    Submit for Approval
+                                    <span class="material-symbols-outlined text-base">arrow_forward</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </body>
+</html>
