@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="/css/animations.css" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script>
         tailwind.config = {
@@ -33,19 +34,19 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-200">
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-200 fade-in">
     <div class="relative flex h-auto min-h-screen w-full flex-col">
         <header class="bg-white/80 dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-20">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex h-16 items-center justify-between">
                     <div class="flex items-center gap-8">
-                        <a class="flex items-center gap-2 text-slate-900 dark:text-white" href="#">
+                        <a class="flex items-center gap-2 text-slate-900 dark:text-white" href="/">
                             <span class="material-symbols-outlined text-primary text-3xl">memory</span>
                             <span class="text-xl font-bold">Tech Parts</span>
                         </a>
                         <nav class="hidden md:flex items-center gap-6">
-                            <a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Home</a>
-                            <a class="text-sm font-medium text-primary dark:text-primary" href="#">Products</a>
+                            <a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="/">Home</a>
+                            <a class="text-sm font-medium text-primary dark:text-primary" href="/products">Products</a>
                             <a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Services</a>
                             <a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">About Us</a>
                             <a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Contact</a>
@@ -56,9 +57,10 @@
                             <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500">search</span>
                             <input class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-background-light dark:bg-slate-800 py-2 pl-10 pr-4 text-sm focus:border-primary focus:ring-primary" placeholder="Search" type="text"/>
                         </div>
-                        <button class="flex items-center justify-center rounded-lg bg-primary/10 dark:bg-primary/20 p-2 text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">
+                        <a href="/cart" class="relative flex items-center justify-center rounded-lg bg-primary/10 dark:bg-primary/20 p-2 text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">
                             <span class="material-symbols-outlined">shopping_cart</span>
-                        </button>
+                            <span th:if="${cartItemCount > 0}" class="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-white text-xs font-bold" th:text="${cartItemCount}">0</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -75,71 +77,55 @@
                                 <div class="text-xs font-medium uppercase text-slate-500 dark:text-slate-400 text-center">Quantity</div>
                                 <div class="text-xs font-medium uppercase text-slate-500 dark:text-slate-400 text-right">Total</div>
                             </div>
-                            <div class="divide-y divide-slate-200 dark:divide-slate-800">
-                                <div class="grid grid-cols-1 sm:grid-cols-6 gap-4 p-4 items-center">
+                            <div class="divide-y divide-slate-200 dark:divide-slate-800" th:if="${cartItems != null and !cartItems.empty}">
+                                <div th:each="cartItem : ${cartItems}" class="grid grid-cols-1 sm:grid-cols-6 gap-4 p-4 items-center">
                                     <div class="col-span-1 sm:col-span-3 flex items-center gap-4">
                                         <div class="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-lg flex items-center justify-center">
                                             <span class="material-symbols-outlined text-3xl text-slate-500 dark:text-slate-400">memory</span>
                                         </div>
                                         <div>
-                                            <p class="font-semibold text-slate-800 dark:text-slate-100">High-Performance CPU</p>
-                                            <button class="text-xs text-red-500 hover:text-red-700 dark:hover:text-red-400 transition-colors mt-1">Remove</button>
+                                            <p class="font-semibold text-slate-800 dark:text-slate-100" th:text="${cartItem.inventory.name}">Product Name</p>
+                                            <form th:action="@{/cart/remove}" method="post" class="inline">
+                                                <input type="hidden" name="cartId" th:value="${cartItem.id}"/>
+                                                <button type="submit" class="text-xs text-red-500 hover:text-red-700 dark:hover:text-red-400 transition-colors mt-1">Remove</button>
+                                            </form>
                                         </div>
                                     </div>
-                                    <div class="text-center text-slate-600 dark:text-slate-300">$299.99</div>
+                                    <div class="text-center text-slate-600 dark:text-slate-300" th:text="'$' + ${#numbers.formatDecimal(cartItem.inventory.price, 1, 2)}">$0.00</div>
                                     <div class="flex justify-center items-center gap-2">
-                                        <button class="size-8 rounded-full bg-slate-200/50 dark:bg-slate-700/50 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">-</button>
-                                        <input class="w-12 text-center bg-transparent border-0 focus:ring-0 p-0 text-slate-800 dark:text-slate-200" type="text" value="1"/>
-                                        <button class="size-8 rounded-full bg-slate-200/50 dark:bg-slate-700/50 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">+</button>
+                                        <form th:action="@{/cart/update}" method="post" class="flex items-center gap-2">
+                                            <input type="hidden" name="cartId" th:value="${cartItem.id}"/>
+                                            <input type="hidden" name="quantity" th:value="${cartItem.quantity - 1}"/>
+                                            <button type="submit" class="size-8 rounded-full bg-slate-200/50 dark:bg-slate-700/50 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">-</button>
+                                        </form>
+                                        <span class="w-12 text-center text-slate-800 dark:text-slate-200" th:text="${cartItem.quantity}">1</span>
+                                        <form th:action="@{/cart/update}" method="post" class="flex items-center gap-2">
+                                            <input type="hidden" name="cartId" th:value="${cartItem.id}"/>
+                                            <input type="hidden" name="quantity" th:value="${cartItem.quantity + 1}"/>
+                                            <button type="submit" class="size-8 rounded-full bg-slate-200/50 dark:bg-slate-700/50 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">+</button>
+                                        </form>
                                     </div>
-                                    <div class="text-right font-semibold text-slate-800 dark:text-slate-100">$299.99</div>
+                                    <div class="text-right font-semibold text-slate-800 dark:text-slate-100" th:text="'$' + ${#numbers.formatDecimal(cartItem.getTotalPrice(), 1, 2)}">$0.00</div>
                                 </div>
-                                <div class="grid grid-cols-1 sm:grid-cols-6 gap-4 p-4 items-center">
-                                    <div class="col-span-1 sm:col-span-3 flex items-center gap-4">
-                                        <div class="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-lg flex items-center justify-center">
-                                            <span class="material-symbols-outlined text-3xl text-slate-500 dark:text-slate-400">developer_board</span>
-                                        </div>
-                                        <div>
-                                            <p class="font-semibold text-slate-800 dark:text-slate-100">16GB DDR4 RAM</p>
-                                            <button class="text-xs text-red-500 hover:text-red-700 dark:hover:text-red-400 transition-colors mt-1">Remove</button>
-                                        </div>
-                                    </div>
-                                    <div class="text-center text-slate-600 dark:text-slate-300">$79.99</div>
-                                    <div class="flex justify-center items-center gap-2">
-                                        <button class="size-8 rounded-full bg-slate-200/50 dark:bg-slate-700/50 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">-</button>
-                                        <input class="w-12 text-center bg-transparent border-0 focus:ring-0 p-0 text-slate-800 dark:text-slate-200" type="text" value="2"/>
-                                        <button class="size-8 rounded-full bg-slate-200/50 dark:bg-slate-700/50 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">+</button>
-                                    </div>
-                                    <div class="text-right font-semibold text-slate-800 dark:text-slate-100">$159.98</div>
-                                </div>
-                                <div class="grid grid-cols-1 sm:grid-cols-6 gap-4 p-4 items-center">
-                                    <div class="col-span-1 sm:col-span-3 flex items-center gap-4">
-                                        <div class="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-lg flex items-center justify-center">
-                                            <span class="material-symbols-outlined text-3xl text-slate-500 dark:text-slate-400">save</span>
-                                        </div>
-                                        <div>
-                                            <p class="font-semibold text-slate-800 dark:text-slate-100">500GB SSD</p>
-                                            <button class="text-xs text-red-500 hover:text-red-700 dark:hover:text-red-400 transition-colors mt-1">Remove</button>
-                                        </div>
-                                    </div>
-                                    <div class="text-center text-slate-600 dark:text-slate-300">$59.99</div>
-                                    <div class="flex justify-center items-center gap-2">
-                                        <button class="size-8 rounded-full bg-slate-200/50 dark:bg-slate-700/50 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">-</button>
-                                        <input class="w-12 text-center bg-transparent border-0 focus:ring-0 p-0 text-slate-800 dark:text-slate-200" type="text" value="1"/>
-                                        <button class="size-8 rounded-full bg-slate-200/50 dark:bg-slate-700/50 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">+</button>
-                                    </div>
-                                    <div class="text-right font-semibold text-slate-800 dark:text-slate-100">$59.99</div>
-                                </div>
+                            </div>
+                            <div th:if="${cartItems == null or cartItems.empty}" class="p-8 text-center">
+                                <span class="material-symbols-outlined text-6xl text-slate-400 dark:text-slate-600 mb-4">shopping_cart</span>
+                                <h3 class="text-lg font-semibold text-slate-600 dark:text-slate-400 mb-2">Your cart is empty</h3>
+                                <p class="text-slate-500 dark:text-slate-500 mb-4">Add some products to get started!</p>
+                                <a href="/products" class="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors">
+                                    <span class="material-symbols-outlined">shopping_bag</span>
+                                    Continue Shopping
+                                </a>
                             </div>
                         </div>
                     </div>
                     <div class="lg:col-span-1">
                         <div class="bg-white dark:bg-slate-900/50 rounded-lg shadow-sm p-6 sticky top-24">
                             <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-6">Order Summary</h2>
-                            <div class="space-y-4 text-sm text-slate-600 dark:text-slate-300">
+                            <div class="space-y-4 text-sm text-slate-600 dark:text-slate-300" th:if="${cartItems != null and !cartItems.empty}">
                                 <div class="flex justify-between">
                                     <span>Subtotal</span>
-                                    <span>$519.96</span>
+                                    <span th:text="'$' + ${#numbers.formatDecimal(cartTotal, 1, 2)}">$0.00</span>
                                 </div>
                                 <div class="flex justify-between">
                                     <span>Shipping</span>
@@ -147,13 +133,16 @@
                                 </div>
                                 <div class="flex justify-between">
                                     <span>Tax</span>
-                                    <span>$25.99</span>
+                                    <span th:text="'$' + ${#numbers.formatDecimal(cartTotal * 0.05, 1, 2)}">$0.00</span>
                                 </div>
                                 <div class="border-t border-slate-200 dark:border-slate-800 my-4"></div>
                                 <div class="flex justify-between text-lg font-bold text-slate-900 dark:text-white">
                                     <span>Total</span>
-                                    <span>$555.94</span>
+                                    <span th:text="'$' + ${#numbers.formatDecimal(cartTotal + 9.99 + (cartTotal * 0.05), 1, 2)}">$0.00</span>
                                 </div>
+                            </div>
+                            <div th:if="${cartItems == null or cartItems.empty}" class="text-center text-slate-500 dark:text-slate-400">
+                                <p>Add items to see order summary</p>
                             </div>
                             <button class="w-full mt-8 bg-primary text-white font-bold py-3 rounded-lg hover:bg-primary/90 transition-colors">
                                 Proceed to Checkout
@@ -164,5 +153,6 @@
             </div>
         </main>
     </div>
+    <script src="/js/page-transitions.js"></script>
 </body>
 </html>

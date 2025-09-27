@@ -191,3 +191,8 @@
 .message-animate {
     animation: slideDown 0.5s ease-out;
 }
+
+/* Out of stock styling */
+.grayscale {
+    filter: grayscale(100%);
+}

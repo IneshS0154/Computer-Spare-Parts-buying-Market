@@ -25,10 +25,6 @@ public class WebController {
 
 
 
-    @GetMapping("/cart")
-    public String cart() {
-        return "cart";
-    }
 
     @GetMapping("/checkout")
     public String checkout() {

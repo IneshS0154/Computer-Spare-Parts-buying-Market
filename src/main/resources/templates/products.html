@@ -69,12 +69,12 @@
                         </span>
                         <input class="w-full pl-10 pr-4 py-2 rounded-lg bg-background-light dark:bg-background-dark border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent transition text-sm" placeholder="Search parts..." type="text"/>
                     </div>
-                    <button class="relative p-2 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
+                    <a href="/cart" class="relative p-2 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
                         <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c.51 0 .962-.344 1.087-.849l1.853-6.946A1.125 1.125 0 0018.334 6H5.214a1.125 1.125 0 00-1.087.849L2.25 11.25m7.5 3h3.75M7.5 14.25a3 3 0 00-3 3h15.75M16.5 18a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.75 18a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" stroke-linecap="round" stroke-linejoin="round"></path>
                         </svg>
-                        <span class="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-white text-xs font-bold">3</span>
-                    </button>
+                        <span th:if="${isAuthenticated and cartItemCount > 0}" class="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-white text-xs font-bold" th:text="${cartItemCount}">0</span>
+                    </a>
                     <!-- Authentication Status -->
                     <div th:if="${isAuthenticated == null or !isAuthenticated}">
                         <a href="/login" class="rounded-lg bg-primary/10 dark:bg-primary/20 px-4 py-2 text-sm font-bold text-primary hover:bg-primary/20 dark:hover:bg-primary/30">
@@ -106,133 +106,92 @@
                 <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Computer Spare Parts</h1>
                 <p class="text-gray-600 dark:text-gray-400 mt-1">Find the right components for your build.</p>
             </div>
-            <div class="mb-8 flex flex-wrap items-center gap-4">
-                <div class="flex items-center gap-2">
-                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Filter by:</span>
-                    <button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-background-light dark:bg-background-dark border border-gray-300 dark:border-gray-700 hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors">
-                        <span class="text-sm text-gray-800 dark:text-gray-200">Category</span>
-                        <svg class="h-4 w-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path clip-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" fill-rule="evenodd"></path>
-                        </svg>
-                    </button>
-                    <button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-background-light dark:bg-background-dark border border-gray-300 dark:border-gray-700 hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors">
-                        <span class="text-sm text-gray-800 dark:text-gray-200">Price</span>
-                        <svg class="h-4 w-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path clip-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" fill-rule="evenodd"></path>
-                        </svg>
-                    </button>
-                    <button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-background-light dark:bg-background-dark border border-gray-300 dark:border-gray-700 hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors">
-                        <span class="text-sm text-gray-800 dark:text-gray-200">Availability</span>
-                        <svg class="h-4 w-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path clip-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" fill-rule="evenodd"></path>
-                        </svg>
-                    </button>
-                </div>
+            <div class="mb-8">
+                <form method="get" action="/products" class="flex flex-wrap items-center gap-4">
+                    <div class="flex items-center gap-2">
+                        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Filter by:</span>
+                        
+                        <!-- Category Filter -->
+                        <select name="category" class="px-3 py-1.5 rounded-lg bg-background-light dark:bg-background-dark border border-gray-300 dark:border-gray-700 text-sm text-gray-800 dark:text-gray-200 focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <option value="">All Categories</option>
+                            <option th:each="cat : ${categories}" th:value="${cat}" th:text="${cat}" th:selected="${cat == selectedCategory}"></option>
+                        </select>
+                        
+                        <!-- Price Range Filter -->
+                        <select name="priceRange" class="px-3 py-1.5 rounded-lg bg-background-light dark:bg-background-dark border border-gray-300 dark:border-gray-700 text-sm text-gray-800 dark:text-gray-200 focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <option value="">All Prices</option>
+                            <option value="under-100" th:selected="${selectedPriceRange == 'under-100'}">Under $100</option>
+                            <option value="100-500" th:selected="${selectedPriceRange == '100-500'}">$100 - $500</option>
+                            <option value="500-1000" th:selected="${selectedPriceRange == '500-1000'}">$500 - $1000</option>
+                            <option value="over-1000" th:selected="${selectedPriceRange == 'over-1000'}">Over $1000</option>
+                        </select>
+                        
+                        <!-- Availability Filter -->
+                        <select name="availability" class="px-3 py-1.5 rounded-lg bg-background-light dark:bg-background-dark border border-gray-300 dark:border-gray-700 text-sm text-gray-800 dark:text-gray-200 focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <option value="">All Items</option>
+                            <option value="in-stock" th:selected="${selectedAvailability == 'in-stock'}">In Stock</option>
+                            <option value="out-of-stock" th:selected="${selectedAvailability == 'out-of-stock'}">Out of Stock</option>
+                        </select>
+                        
+                        <!-- Sort By -->
+                        <select name="sortBy" class="px-3 py-1.5 rounded-lg bg-background-light dark:bg-background-dark border border-gray-300 dark:border-gray-700 text-sm text-gray-800 dark:text-gray-200 focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <option value="">Sort by</option>
+                            <option value="price-asc" th:selected="${selectedSortBy == 'price-asc'}">Price: Low to High</option>
+                            <option value="price-desc" th:selected="${selectedSortBy == 'price-desc'}">Price: High to Low</option>
+                            <option value="name-asc" th:selected="${selectedSortBy == 'name-asc'}">Name: A to Z</option>
+                            <option value="name-desc" th:selected="${selectedSortBy == 'name-desc'}">Name: Z to A</option>
+                        </select>
+                        
+                        <button type="submit" class="px-4 py-1.5 bg-primary text-white rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors">
+                            Apply Filters
+                        </button>
+                        
+                        <a href="/products" class="px-4 py-1.5 bg-gray-500 text-white rounded-lg text-sm font-medium hover:bg-gray-600 transition-colors">
+                            Clear Filters
+                        </a>
+                    </div>
+                </form>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                <div class="bg-background-light dark:bg-background-dark border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/50 dark:hover:border-primary/50 transition-all duration-300 group">
-                    <div class="relative">
-                        <div class="w-full h-48 bg-center bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBYekOHY0qydu84AuR-nRzIK5rgg60rNCq8AeNbHuivn6OcGPiNLVrIXZY5HLx9u9WZhjXuOMbcRqnXMz0IHaGSlGYYo7KZZn74EA7wFvVDQQpogOmkZ9pdOBw9vkzBgJmGzAJdUal4TnpAZDjaVoJCKms45hnq7AWrrSx9bb0ikEiZrhgwrkb9x3gNphyIuVknWFfyHFQeKUrM5OIuUBHJyjWDzmoSTKr_gDnr1PTn7qD-qm42pxj9RStuU3yupOOZMJ2GcXk2JT70");'></div>
-                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <button class="px-6 py-2 bg-primary text-white rounded-full font-semibold text-sm">View Details</button>
+                <div th:each="product : ${products}" 
+                     th:class="${product.stockQuantity == 0} ? 'bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg overflow-hidden shadow-sm opacity-75' : 'bg-background-light dark:bg-background-dark border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/50 dark:hover:border-primary/50 transition-all duration-300 group'">
+                    <a th:href="@{'/products/' + ${product.id}}" class="block">
+                        <div class="relative">
+                            <div class="w-full h-48 bg-center bg-cover bg-gray-200 dark:bg-gray-700 flex items-center justify-center" 
+                                 th:class="${product.stockQuantity == 0} ? 'grayscale' : ''">
+                                <span class="material-symbols-outlined text-6xl text-gray-400 dark:text-gray-500">memory</span>
+                            </div>
+                            <div th:if="${product.stockQuantity > 0}" class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span class="px-6 py-2 bg-primary text-white rounded-full font-semibold text-sm">View Details</span>
+                            </div>
+                            <div th:if="${product.stockQuantity == 0}" class="absolute inset-0 bg-black/50 flex items-center justify-center">
+                                <span class="px-6 py-2 bg-red-600 text-white rounded-full font-semibold text-sm">Out of Stock</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-base font-semibold text-gray-800 dark:text-white mb-1">High-Performance CPU</h3>
-                        <p class="text-2xl font-bold text-primary mb-2">$350.00</p>
-                        <button class="w-full py-2 bg-primary/10 dark:bg-primary/20 text-primary rounded-lg font-semibold text-sm hover:bg-primary hover:text-white transition-colors">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="bg-background-light dark:bg-background-dark border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/50 dark:hover:border-primary/50 transition-all duration-300 group">
-                    <div class="relative">
-                        <div class="w-full h-48 bg-center bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC1VsIsNOvIeEJGFGWE5xY9reCdIeuPkLWOIOMBAamIBK9dvC_YnHrfLkLacaM_gpoqqZISJuQDTchXHh36cv_OqV9uXVB06QsPLkCE1JpLeNR_9WcMe9dV1Hv0SZMlKun_6_6ygetGp29KSQF6yyPkM4IpxbXUt2IdAgKAIEDBGmTDFCV5TrmN6PMiMXk41xGWM-N0e1bCKGz0_bkfryTg5JuEh8xTLftDf-E40ZoJ7HUw-zQLYMweBPydUP2lLVRTfNVX_U_bOwgM");'></div>
-                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <button class="px-6 py-2 bg-primary text-white rounded-full font-semibold text-sm">View Details</button>
+                        <div class="p-4">
+                            <h3 th:class="${product.stockQuantity == 0} ? 'text-base font-semibold text-gray-500 dark:text-gray-400 mb-1' : 'text-base font-semibold text-gray-800 dark:text-white mb-1'" 
+                                th:text="${product.name}">High-Performance CPU</h3>
+                            <p th:class="${product.stockQuantity == 0} ? 'text-2xl font-bold text-gray-400 mb-2' : 'text-2xl font-bold text-primary mb-2'" 
+                               th:text="'$' + ${#numbers.formatDecimal(product.price, 1, 2)}">$350.00</p>
+                            
+                            <!-- In Stock - Show Add to Cart button -->
+                            <div th:if="${product.stockQuantity > 0 and isAuthenticated}">
+                                <form th:action="@{/cart/add}" method="post" class="mb-2">
+                                    <input type="hidden" name="productId" th:value="${product.id}"/>
+                                    <input type="hidden" name="quantity" value="1"/>
+                                    <button type="submit" class="w-full py-2 bg-primary/10 dark:bg-primary/20 text-primary rounded-lg font-semibold text-sm hover:bg-primary hover:text-white transition-colors">Add to Cart</button>
+                                </form>
+                            </div>
+                            <div th:if="${product.stockQuantity > 0 and !isAuthenticated}">
+                                <a href="/login" class="w-full py-2 bg-primary/10 dark:bg-primary/20 text-primary rounded-lg font-semibold text-sm hover:bg-primary hover:text-white transition-colors inline-block text-center">Login to Add to Cart</a>
+                            </div>
+                            
+                            <!-- Out of Stock - Show Out of Stock text -->
+                            <div th:if="${product.stockQuantity == 0}" class="w-full py-2 bg-gray-300 dark:bg-gray-600 text-gray-600 dark:text-gray-400 rounded-lg font-semibold text-sm text-center">
+                                Out of Stock
+                            </div>
                         </div>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-base font-semibold text-gray-800 dark:text-white mb-1">Gaming Motherboard</h3>
-                        <p class="text-2xl font-bold text-primary mb-2">$180.00</p>
-                        <button class="w-full py-2 bg-primary/10 dark:bg-primary/20 text-primary rounded-lg font-semibold text-sm hover:bg-primary hover:text-white transition-colors">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="bg-background-light dark:bg-background-dark border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/50 dark:hover:border-primary/50 transition-all duration-300 group">
-                    <div class="relative">
-                        <div class="w-full h-48 bg-center bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBI7n0PtdcoUVgjiJ-qjFgR0BTBX78gaBpDRwHdY0SkeefnQZfoMcAgXQemYwGO6S2PPh5o3ytU7O0jUhsI-JXUV0HCk2NElbjTLWAlJQ4gbbWZCDPrykIlJKSMOVulUXRJxsE7AG7AgtEjDbaJ76UqFeXAxzRp8bECIQPzujRhtjPAyOx58knXMK_JrJ_36fombvA6mFLtl0hIpl9LxTZtwDEnlD-IuDvEW_2Tp0-o9ZZGwmjt-pB3MhMVaF9vQGT3Z4Yz1zpczbJr");'></div>
-                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <button class="px-6 py-2 bg-primary text-white rounded-full font-semibold text-sm">View Details</button>
-                        </div>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-base font-semibold text-gray-800 dark:text-white mb-1">16GB DDR4 RAM</h3>
-                        <p class="text-2xl font-bold text-primary mb-2">$75.00</p>
-                        <button class="w-full py-2 bg-primary/10 dark:bg-primary/20 text-primary rounded-lg font-semibold text-sm hover:bg-primary hover:text-white transition-colors">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="bg-background-light dark:bg-background-dark border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/50 dark:hover:border-primary/50 transition-all duration-300 group">
-                    <div class="relative">
-                        <div class="w-full h-48 bg-center bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCBuXVdV0OomBvwLBlCG9sC6DZQ99VFef2QrnS3Em9lYbUYUBKUbpurGCJOUdFiUqOjZZ2TsGRyqx2m27fK_rGFVP7ZW9y4LY654-Bk5-0KJ1LZUku_Wh8KRGnBIItOUMA5Ahfm09Fs6Jf6LJYuYw0mBKTSy6YONQVreWv6hrG0xuctata8ad_hdjGoc_Mh9bzxekHSmyLIC9WUP5CSLU7ze8wES7dSf-WXmu5NMoof2-tB3QAzVjLWrFZ7cmgGMkw1zRheqwgJ9UlA");'></div>
-                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <button class="px-6 py-2 bg-primary text-white rounded-full font-semibold text-sm">View Details</button>
-                        </div>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-base font-semibold text-gray-800 dark:text-white mb-1">500GB NVMe SSD</h3>
-                        <p class="text-2xl font-bold text-primary mb-2">$55.00</p>
-                        <button class="w-full py-2 bg-primary/10 dark:bg-primary/20 text-primary rounded-lg font-semibold text-sm hover:bg-primary hover:text-white transition-colors">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="bg-background-light dark:bg-background-dark border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/50 dark:hover:border-primary/50 transition-all duration-300 group">
-                    <div class="relative">
-                        <div class="w-full h-48 bg-center bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBxChSgf9wcFbvSy2lHkA0fzT7HWcpyf_JfZ8PCe-0JOrrEDFsilGxN-8xyNisBf_5r-7wDrA8rkAXk_VPerIpTyngqnM9crs8I0t1pCU-d2jMLPSAJIeyAXMgSKXlI_WCBbA-dN3ZSlEQGBILPEPSy-m8My2ddrtdS3x1xhcbjLZtfc_s18nboaYoaVI6hvX2lEvzFaXwPeKh4A3MWuIwrL_9EJjr5gP2TpAV-ZMvL5IpeaspRc7YGh9ynie9ZIh59FIkq7Gw0wT6C");'></div>
-                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <button class="px-6 py-2 bg-primary text-white rounded-full font-semibold text-sm">View Details</button>
-                        </div>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-base font-semibold text-gray-800 dark:text-white mb-1">750W Power Supply</h3>
-                        <p class="text-2xl font-bold text-primary mb-2">$90.00</p>
-                        <button class="w-full py-2 bg-primary/10 dark:bg-primary/20 text-primary rounded-lg font-semibold text-sm hover:bg-primary hover:text-white transition-colors">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="bg-background-light dark:bg-background-dark border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/50 dark:hover:border-primary/50 transition-all duration-300 group">
-                    <div class="relative">
-                        <div class="w-full h-48 bg-center bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCmYbqy7IExyFNR4prfNR-fmbC929Hzd5UIO9H7lPGth6HDBK-_nhAna04ZG7acS3uMZobtF7TfSRutySwK-SRKb2TlaKyMkkvUUSKVFm8R6h5yl7SK8f-ZkxYpf07Cig4pwUdGa2T93oMXNt7K3WPCfPYCymiRNuwQ4fU9DB6bZdjKX4ZoZZE2J9nLAQIDVOUMzWGssMclr3iGGJenVAebrzDdazLkdXlGgkf7yo4pWkOB1nAsjDmEZIwO7hbgwiU89rYXg6xYAP3p");'></div>
-                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <button class="px-6 py-2 bg-primary text-white rounded-full font-semibold text-sm">View Details</button>
-                        </div>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-base font-semibold text-gray-800 dark:text-white mb-1">CPU Cooler</h3>
-                        <p class="text-2xl font-bold text-primary mb-2">$65.00</p>
-                        <button class="w-full py-2 bg-primary/10 dark:bg-primary/20 text-primary rounded-lg font-semibold text-sm hover:bg-primary hover:text-white transition-colors">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="bg-background-light dark:bg-background-dark border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/50 dark:hover:border-primary/50 transition-all duration-300 group">
-                    <div class="relative">
-                        <div class="w-full h-48 bg-center bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDCcLsBAAAxaPbEzoDopD2vsi3BUlYDO47gKIfrzOM9rm5XOG1WZ3Tc_DAI-AnNXIN3UvaSPv0Ki6Jo87iZwEZ3Fs98TPr9t0Sne3HFNz3hQWt_RP-p-p5ftqvT4Tpiym8GN08JsUefXCZFsIm0XffFiSLiT2ZZPsWKTKqvAULbFeAhHovkz0mXlld1fjehlmbuYwoApqno00nq1tG3JC6jhAc9fsIjZHa_i79K8GyRVgDG-xXylLQqUsz55GLm5_7q8w-gMgFQcuhZ");'></div>
-                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <button class="px-6 py-2 bg-primary text-white rounded-full font-semibold text-sm">View Details</button>
-                        </div>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-base font-semibold text-gray-800 dark:text-white mb-1">Case Fan</h3>
-                        <p class="text-2xl font-bold text-primary mb-2">$15.00</p>
-                        <button class="w-full py-2 bg-primary/10 dark:bg-primary/20 text-primary rounded-lg font-semibold text-sm hover:bg-primary hover:text-white transition-colors">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="bg-background-light dark:bg-background-dark border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/50 dark:hover:border-primary/50 transition-all duration-300 group">
-                    <div class="relative">
-                        <div class="w-full h-48 bg-center bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAKgVp0hKqMYAY-WlJ5B7_4or2DOnh-eQS8ejbJHUx_BcNer_l2VxUOXFmGidUO9PYWt-PmkVsheFCgIe9HC87P9HVmlsEeYJY2MjNc1TWAGadKBizksE6PJzR3bMizTUwfNO6H7FSrYJMDCir1VtZBrRMAttp91bSt-48BbHK9O7KPiUwidAYz482xAw5MBNDHL1rZNVweFQ1hhz_SvM1Pl2_InfeaI16MM8o-LGSgt0AmCF6q44KFdKnXYpJn12AjtGWC34b421YE");'></div>
-                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <button class="px-6 py-2 bg-primary text-white rounded-full font-semibold text-sm">View Details</button>
-                        </div>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-base font-semibold text-gray-800 dark:text-white mb-1">Thermal Paste</h3>
-                        <p class="text-2xl font-bold text-primary mb-2">$8.00</p>
-                        <button class="w-full py-2 bg-primary/10 dark:bg-primary/20 text-primary rounded-lg font-semibold text-sm hover:bg-primary hover:text-white transition-colors">Add to Cart</button>
-                    </div>
+                    </a>
                 </div>
             </div>
             <div class="flex justify-center items-center mt-12 space-x-2">

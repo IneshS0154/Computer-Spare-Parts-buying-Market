@@ -3,6 +3,7 @@ package com.techparts.controller;
 import com.techparts.entity.Inventory;
 import com.techparts.entity.User;
 import com.techparts.service.InventoryService;
+import com.techparts.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,10 +19,37 @@ public class ProductController {
     @Autowired
     private InventoryService inventoryService;
 
+    @Autowired
+    private CartService cartService;
+
     @GetMapping("/products")
-    public String productsPage(Model model) {
-        List<Inventory> products = inventoryService.getAllActiveProducts();
+    public String productsPage(@RequestParam(required = false) String category,
+                              @RequestParam(required = false) String priceRange,
+                              @RequestParam(required = false) String availability,
+                              @RequestParam(required = false) String sortBy,
+                              Model model) {
+        // Debug logging
+        System.out.println("Filter parameters - Category: " + category + ", PriceRange: " + priceRange + 
+                          ", Availability: " + availability + ", SortBy: " + sortBy);
+        
+        List<Inventory> products;
+        if (category != null || priceRange != null || availability != null || sortBy != null) {
+            products = inventoryService.getFilteredProducts(category, priceRange, availability, sortBy);
+            System.out.println("Filtered products count: " + products.size());
+        } else {
+            // Show all active products (including out of stock) by default
+            products = inventoryService.getAllProducts().stream()
+                    .filter(product -> product.getIsActive())
+                    .collect(java.util.stream.Collectors.toList());
+            System.out.println("All products count: " + products.size());
+        }
+        
         model.addAttribute("products", products);
+        model.addAttribute("categories", inventoryService.getAllCategories());
+        model.addAttribute("selectedCategory", category);
+        model.addAttribute("selectedPriceRange", priceRange);
+        model.addAttribute("selectedAvailability", availability);
+        model.addAttribute("selectedSortBy", sortBy);
         setAuthenticationStatus(model);
         return "products";
     }
@@ -34,7 +62,7 @@ public class ProductController {
         }
         model.addAttribute("product", product);
         setAuthenticationStatus(model);
-        return "product-details";
+        return "product-page";
     }
 
     @GetMapping("/products/category/{category}")
@@ -61,8 +89,11 @@ public class ProductController {
             model.addAttribute("isAuthenticated", true);
             User user = (User) auth.getPrincipal();
             model.addAttribute("user", user);
+            long cartItemCount = cartService.getCartItemCount(user);
+            model.addAttribute("cartItemCount", cartItemCount);
         } else {
             model.addAttribute("isAuthenticated", false);
+            model.addAttribute("cartItemCount", 0);
         }
     }
 }

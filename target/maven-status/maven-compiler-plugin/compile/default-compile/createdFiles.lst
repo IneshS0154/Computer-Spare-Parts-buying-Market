@@ -1,6 +1,7 @@
 com\techparts\entity\UserBoughtPartWarranty.class
 com\techparts\entity\ComplaintStatus.class
 com\techparts\service\WarrantyService.class
+com\techparts\service\CartService.class
 com\techparts\repository\UserBoughtPartWarrantyRepository.class
 com\techparts\controller\UserProfileController.class
 com\techparts\entity\SupplierRequest.class
@@ -46,4 +47,5 @@ com\techparts\entity\PaymentMethod.class
 com\techparts\repository\AdminRepository.class
 com\techparts\TechPartsSolutionsApplication.class
 com\techparts\entity\User.class
+com\techparts\controller\CartController.class
 com\techparts\entity\RepairLogType.class
