@@ -196,3 +196,26 @@
 .grayscale {
     filter: grayscale(100%);
 }
+
+/* Product image styling */
+.product-image {
+    object-fit: contain;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+.product-image:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive image container */
+.image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.dark .image-container {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+}

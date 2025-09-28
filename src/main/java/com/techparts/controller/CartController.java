@@ -42,6 +42,7 @@ public class CartController {
         model.addAttribute("cartItemCount", cartItemCount);
         model.addAttribute("isAuthenticated", true);
         model.addAttribute("user", user);
+        model.addAttribute("inventoryService", inventoryService); // Add service for image paths
 
         return "cart";
     }

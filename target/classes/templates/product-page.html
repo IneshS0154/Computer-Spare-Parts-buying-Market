@@ -118,8 +118,14 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
                 <!-- Product Image -->
                 <div class="space-y-4">
-                    <div class="aspect-square bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden">
-                        <div class="w-full h-full bg-center bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBYekOHY0qydu84AuR-nRzIK5rgg60rNCq8AeNbHuivn6OcGPiNLVrIXZY5HLx9u9WZhjXuOMbcRqnXMz0IHaGSlGYYo7KZZn74EA7wFvVDQQpogOmkZ9pdOBw9vkzBgJmGzAJdUal4TnpAZDjaVoJCKms45hnq7AWrrSx9bb0ikEiZrhgwrkb9x3gNphyIuVknWFfyHFQeKUrM5OIuUBHJyjWDzmoSTKr_gDnr1PTn7qD-qm42pxj9RStuU3yupOOZMJ2GcXk2JT70");'></div>
+                    <div class="aspect-square image-container rounded-xl overflow-hidden">
+                        <img th:src="${inventoryService.getProductImagePath(product.name)}" 
+                             th:alt="${product.name}"
+                             class="product-image max-w-full max-h-full"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="hidden w-full h-full items-center justify-center">
+                            <span class="material-symbols-outlined text-8xl text-gray-400 dark:text-gray-500">memory</span>
+                        </div>
                     </div>
                 </div>
 

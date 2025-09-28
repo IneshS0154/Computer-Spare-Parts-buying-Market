@@ -54,14 +54,14 @@
                         </nav>
                     </div>
                     <div class="flex items-center gap-4">
-                        <div class="relative hidden sm:block">
+                        <form th:action="@{/products/search}" method="get" class="relative hidden sm:block">
                             <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                                 <svg class="h-5 w-5 text-gray-400" fill="currentColor" height="24px" viewBox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
                                 </svg>
                             </div>
-                            <input class="block w-full rounded-lg border-gray-200 dark:border-gray-700 bg-background-light dark:bg-background-dark py-2 pl-10 pr-3 text-sm focus:border-primary focus:ring-primary" placeholder="Search" type="text"/>
-                        </div>
+                            <input name="query" class="block w-full rounded-lg border-gray-200 dark:border-gray-700 bg-background-light dark:bg-background-dark py-2 pl-10 pr-3 text-sm focus:border-primary focus:ring-primary" placeholder="Search parts..." type="text"/>
+                        </form>
                         <div class="flex items-center gap-2">
                             <!-- Authentication Status -->
                             <div th:if="${isAuthenticated == null or !isAuthenticated}">

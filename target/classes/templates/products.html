@@ -61,14 +61,14 @@
                     </div>
                 </div>
                 <div class="flex items-center gap-4">
-                    <div class="relative hidden sm:block">
+                    <form th:action="@{/products/search}" method="get" class="relative hidden sm:block">
                         <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
                             <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path clip-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" fill-rule="evenodd"></path>
                             </svg>
                         </span>
-                        <input class="w-full pl-10 pr-4 py-2 rounded-lg bg-background-light dark:bg-background-dark border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent transition text-sm" placeholder="Search parts..." type="text"/>
-                    </div>
+                        <input name="query" class="w-full pl-10 pr-4 py-2 rounded-lg bg-background-light dark:bg-background-dark border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent transition text-sm" placeholder="Search parts..." type="text" th:value="${searchQuery}"/>
+                    </form>
                     <a href="/cart" class="relative p-2 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
                         <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c.51 0 .962-.344 1.087-.849l1.853-6.946A1.125 1.125 0 0018.334 6H5.214a1.125 1.125 0 00-1.087.849L2.25 11.25m7.5 3h3.75M7.5 14.25a3 3 0 00-3 3h15.75M16.5 18a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.75 18a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -152,14 +152,39 @@
                     </div>
                 </form>
             </div>
+            
+            <!-- Search Results Indicator -->
+            <div th:if="${searchQuery != null and !searchQuery.isEmpty()}" class="mb-6 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-blue-600 dark:text-blue-400">search</span>
+                        <span class="text-blue-800 dark:text-blue-200 font-medium">
+                            Search results for: "<span th:text="${searchQuery}">query</span>"
+                        </span>
+                        <span class="text-blue-600 dark:text-blue-400 text-sm">
+                            (<span th:text="${products.size()}">0</span> products found)
+                        </span>
+                    </div>
+                    <a href="/products" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 text-sm font-medium">
+                        Clear Search
+                    </a>
+                </div>
+            </div>
+            
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 <div th:each="product : ${products}" 
                      th:class="${product.stockQuantity == 0} ? 'bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg overflow-hidden shadow-sm opacity-75' : 'bg-background-light dark:bg-background-dark border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/50 dark:hover:border-primary/50 transition-all duration-300 group'">
                     <a th:href="@{'/products/' + ${product.id}}" class="block">
                         <div class="relative">
-                            <div class="w-full h-48 bg-center bg-cover bg-gray-200 dark:bg-gray-700 flex items-center justify-center" 
+                            <div class="w-full h-48 image-container overflow-hidden" 
                                  th:class="${product.stockQuantity == 0} ? 'grayscale' : ''">
-                                <span class="material-symbols-outlined text-6xl text-gray-400 dark:text-gray-500">memory</span>
+                                <img th:src="${inventoryService.getProductImagePath(product.name)}" 
+                                     th:alt="${product.name}"
+                                     class="product-image max-w-full max-h-full"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="hidden w-full h-full items-center justify-center">
+                                    <span class="material-symbols-outlined text-6xl text-gray-400 dark:text-gray-500">memory</span>
+                                </div>
                             </div>
                             <div th:if="${product.stockQuantity > 0}" class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                                 <span class="px-6 py-2 bg-primary text-white rounded-full font-semibold text-sm">View Details</span>

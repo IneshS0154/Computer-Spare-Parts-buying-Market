@@ -156,4 +156,73 @@ public class InventoryService {
     public List<String> getAllCategories() {
         return inventoryRepository.findDistinctCategories();
     }
+    
+    // Helper method to get product image path
+    public String getProductImagePath(String productName) {
+        if (productName == null) return "/images/products/default.jpg";
+        
+        // Map product names to actual image filenames
+        String imageName = productName.toLowerCase();
+        String imagePath = "/images/products/";
+        
+        // Debug logging
+        System.out.println("Mapping product: " + productName + " -> " + imageName);
+        
+        // CPU mapping
+        if (imageName.contains("high-performance") && imageName.contains("cpu")) {
+            return imagePath + "high_performance_cpu.jpg";
+        }
+        // Graphics Card mapping
+        else if (imageName.contains("gaming") && imageName.contains("graphics")) {
+            return imagePath + "gaming_graphics_card.jpg"; // You may need to add this image
+        }
+        // RAM mapping
+        else if (imageName.contains("16gb") && imageName.contains("ddr4")) {
+            return imagePath + "ddr5_ram.webp"; // Using DDR5 RAM image
+        }
+        // SSD mapping
+        else if (imageName.contains("1tb") && imageName.contains("nvme")) {
+            return imagePath + "500gb_nvme_ssd.jpeg"; // Using 500GB SSD image
+        }
+        // Motherboard mapping
+        else if (imageName.contains("gaming") && imageName.contains("motherboard")) {
+            return imagePath + "gaming_motherboard.webp";
+        }
+        // Power Supply mapping
+        else if (imageName.contains("750w") && imageName.contains("power")) {
+            return imagePath + "750W_powersupply.jpg";
+        }
+        // CPU Cooler mapping
+        else if (imageName.contains("rgb") && imageName.contains("cooler")) {
+            return imagePath + "cpu_cooler.jpeg";
+        }
+        // Case mapping
+        else if (imageName.contains("gaming") && imageName.contains("case")) {
+            return imagePath + "case_fan.jpeg"; // Using case fan image
+        }
+        // Thermal Paste mapping
+        else if (imageName.contains("thermal") && imageName.contains("paste")) {
+            return imagePath + "thermal_paste.jpeg";
+        }
+        // Additional mappings for other products
+        else if (imageName.contains("ssd")) {
+            return imagePath + "500gb_nvme_ssd.jpeg";
+        }
+        else if (imageName.contains("cooler")) {
+            return imagePath + "cpu_cooler.jpeg";
+        }
+        else if (imageName.contains("case")) {
+            return imagePath + "case_fan.jpeg";
+        }
+        else if (imageName.contains("paste")) {
+            return imagePath + "thermal_paste.jpeg";
+        }
+        else {
+            // Fallback to default mapping
+            String fallbackName = imageName.replace(" ", "_");
+            String finalPath = imagePath + fallbackName + ".jpg";
+            System.out.println("Using fallback path: " + finalPath);
+            return finalPath;
+        }
+    }
 }

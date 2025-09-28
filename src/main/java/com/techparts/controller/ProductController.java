@@ -50,6 +50,7 @@ public class ProductController {
         model.addAttribute("selectedPriceRange", priceRange);
         model.addAttribute("selectedAvailability", availability);
         model.addAttribute("selectedSortBy", sortBy);
+        model.addAttribute("inventoryService", inventoryService); // Add service to model for image path
         setAuthenticationStatus(model);
         return "products";
     }
@@ -61,6 +62,7 @@ public class ProductController {
             return "redirect:/products";
         }
         model.addAttribute("product", product);
+        model.addAttribute("inventoryService", inventoryService); // Add service to model for image path
         setAuthenticationStatus(model);
         return "product-page";
     }
@@ -79,6 +81,8 @@ public class ProductController {
         List<Inventory> products = inventoryService.searchProducts(query);
         model.addAttribute("products", products);
         model.addAttribute("searchQuery", query);
+        model.addAttribute("categories", inventoryService.getAllCategories());
+        model.addAttribute("inventoryService", inventoryService); // Add service for image paths
         setAuthenticationStatus(model);
         return "products";
     }
